@@ -95,16 +95,28 @@ Path("vault-audit-results.json").write_text(json.dumps({
 print(body)
 
 if os.environ.get("GH_TOKEN"):
-    title = "Vault weekly link health audit"
-    query = subprocess.run(
-        ["gh", "issue", "list", "--state", "open", "--search", f"{title} in:title",
-         "--json", "number,title", "--limit", "100"],
-        capture_output=True, text=True, check=True,
-    )
-    existing = next((i for i in json.loads(query.stdout) if i["title"] == title), None)
-    if existing:
-        subprocess.run(["gh", "issue", "edit", str(existing["number"]),
-                        "--body-file", "vault-audit-report.md"], check=True)
+    # Use GitHub REST instead of gh issue commands (which use GraphQL and can fail).
+    repo = os.environ.get("GH_REPO", "")
+    if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repo):
+        print("WARNING: GH_REPO missing; report artifacts are still available.")
     else:
-        subprocess.run(["gh", "issue", "create", "--title", title,
-                        "--body-file", "vault-audit-report.md"], check=True)
+        title = "Vault weekly link health audit"
+        try:
+            query = subprocess.run(
+                ["gh", "api", f"repos/{repo}/issues", "-f", "state=open",
+                 "-f", "per_page=100", "--method", "GET"],
+                capture_output=True, text=True, check=True,
+            )
+            issues = json.loads(query.stdout)
+            existing = next((i for i in issues if i.get("title") == title and "pull_request" not in i), None)
+            args = ["gh", "api", f"repos/{repo}/issues"]
+            if existing:
+                args[-1] += f"/{existing['number']}"
+                args += ["--method", "PATCH"]
+            else:
+                args += ["--method", "POST", "-f", f"title={title}"]
+            args += ["-F", "body=@vault-audit-report.md"]
+            subprocess.run(args, capture_output=True, text=True, check=True)
+            print("GitHub audit issue updated successfully.")
+        except (subprocess.CalledProcessError, ValueError) as exc:
+            print(f"WARNING: GitHub issue update failed ({str(exc)[:180]}). Audit reports were still generated and uploaded.")
