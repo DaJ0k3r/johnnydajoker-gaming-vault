@@ -48,10 +48,10 @@ window.VAULT_CATALOG = [
       "game-files-required"
     ],
     "thumbnail": null,
-    "description": "Browser-based Red Alert 2 recreation; requires separate game files to play.",
-    "status": "unverified",
+    "description": "Playable browser-based Red Alert 2 recreation; requires game files, with a link provided by the launcher.",
+    "status": "verified",
     "lastChecked": "2026-11-01",
-    "notes": "User tested 2026-11-01: launcher opens and provides a link to required game files; gameplay with files not confirmed.",
+    "notes": "User confirmed 2026-11-01: tested and playable; game files are required and the site provides a link to obtain them.",
     "legacyKind": "Classic port",
     "legacyDevice": "PC"
   },
