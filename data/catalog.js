@@ -1523,13 +1523,14 @@ window.VAULT_CATALOG = [
     "category": "Strategy",
     "tags": [
       "Browser original",
-      "pc-listed"
+      "pc-listed",
+      "unsafe-content-redirect"
     ],
     "thumbnail": null,
-    "description": "New addition · Availability and mobile support not individually verified",
-    "status": "unverified",
-    "lastChecked": null,
-    "notes": "Migrated from legacy catalogue; launch not manually verified.",
+    "description": "UNSAFE LINK: currently shows unrelated gambling content instead of the Freeciv game. Awaiting safe replacement.",
+    "status": "broken",
+    "lastChecked": "2026-11-01",
+    "notes": "User screenshot 2026-11-01: freecivweb.org displayed an unrelated Indonesian gambling/slot promotion (Indoslot303), not Freeciv gameplay. Do not recommend this URL. Investigate a safe official replacement before restoring.",
     "legacyKind": "Browser original",
     "legacyDevice": "PC"
   },
