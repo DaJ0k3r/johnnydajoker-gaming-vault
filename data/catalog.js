@@ -757,24 +757,6 @@ window.VAULT_CATALOG = [
     "legacyDevice": "PC"
   },
   {
-    "id": 43,
-    "title": "BitRunLog",
-    "type": "RESOURCE",
-    "url": "https://bitrunlog.net/",
-    "category": "Collection",
-    "tags": [
-      "Directory",
-      "pc-listed"
-    ],
-    "thumbnail": null,
-    "description": "Browser game port directory",
-    "status": "unverified",
-    "lastChecked": null,
-    "notes": "Migrated from legacy catalogue; launch not manually verified.",
-    "legacyKind": "Directory",
-    "legacyDevice": "PC"
-  },
-  {
     "id": 44,
     "title": "WASM Games Online",
     "type": "RESOURCE",
