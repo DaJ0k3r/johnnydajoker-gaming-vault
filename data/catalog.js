@@ -210,9 +210,9 @@ window.VAULT_CATALOG = [
     ],
     "thumbnail": null,
     "description": "Block-world multiplayer",
-    "status": "unverified",
-    "lastChecked": null,
-    "notes": "Migrated from legacy catalogue; launch not manually verified.",
+    "status": "verified",
+    "lastChecked": "2026-11-01",
+    "notes": "User launch-tested 2026-11-01: works.",
     "legacyKind": "Browser original",
     "legacyDevice": "Both"
   },
@@ -566,13 +566,14 @@ window.VAULT_CATALOG = [
     "category": "Strategy",
     "tags": [
       "Platform",
-      "mobile-listed"
+      "mobile-listed",
+      "free-account-required"
     ],
     "thumbnail": null,
-    "description": "Online board games; account may be needed",
-    "status": "unverified",
-    "lastChecked": null,
-    "notes": "Migrated from legacy catalogue; launch not manually verified.",
+    "description": "Online board games; free account required to play.",
+    "status": "verified",
+    "lastChecked": "2026-11-01",
+    "notes": "User launch-tested 2026-11-01: works; free account required to play.",
     "legacyKind": "Platform",
     "legacyDevice": "Both"
   },
