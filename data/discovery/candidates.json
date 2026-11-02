@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-11-03",
+  "purpose": "Editorial discovery staging only. Not displayed as verified games or added to public catalogue until tested.",
+  "existingDuplicate": {
+    "title": "Command & Conquer Red Alert 2",
+    "url": "https://chronodivide.com/",
+    "action": "Keep existing verified catalogue record; do not duplicate."
+  },
+  "statusDefinitions": {
+    "unverified": "Candidate only. No playable destination or full gameplay verification implied."
+  },
+  "entries": [
+    {
+      "id": "discovery-001",
+      "title": "The Simpsons: Hit & Run",
+      "category": "Driving / Open World",
+      "sourceUrl": "https://portedgames.com/browser/",
+      "sourceRequirements": "Port discovery directory; exact playable URL and rights must be checked",
+      "verificationChecklist": "Browser port reported; verify executable demo and licensing",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false
+    },
+    {
+      "id": "discovery-002",
+      "title": "Grand Theft Auto: Vice City",
+      "category": "Action / Open World",
+      "sourceUrl": "https://portedgames.com/browser/",
+      "sourceRequirements": "Port discovery directory; original game files may be required",
+      "verificationChecklist": "Verify legitimate engine port and game-data requirement",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false
+    },
+    {
+      "id": "discovery-003",
+      "title": "LEGO Island",
+      "category": "Adventure",
+      "sourceUrl": "https://portedgames.com/browser/",
+      "sourceRequirements": "Port discovery directory; specific demo URL not confirmed",
+      "verificationChecklist": "Verify gameplay, controls and legal distribution",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false
+    },
+    {
+      "id": "discovery-004",
+      "title": "Tomb Raider / OpenLara",
+      "category": "Adventure",
+      "sourceUrl": "https://github.com/XProger/OpenLara",
+      "sourceRequirements": "Open-source engine; demo/game data requirements vary",
+      "verificationChecklist": "Verify public demo, asset requirements and supported devices",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false
+    },
+    {
+      "id": "discovery-005",
+      "title": "SUPERHOT 2013 Prototype",
+      "category": "FPS",
+      "sourceUrl": "https://playable.wtf/games/superhot-official-prototype/",
+      "sourceRequirements": "External game page; direct play endpoint to confirm",
+      "verificationChecklist": "Verify original prototype playable and mobile support",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false
+    },
+    {
+      "id": "discovery-006",
+      "title": "HexGL",
+      "category": "Racing",
+      "sourceUrl": "https://appsxi.com/play/hexgl",
+      "sourceRequirements": "Third-party game page; direct launch not tested",
+      "verificationChecklist": "Verify gameplay and external redirects",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false
+    },
+    {
+      "id": "discovery-007",
+      "title": "OpenTTD",
+      "category": "Strategy",
+      "sourceUrl": "https://github.com/MahanKenway/PlayChive",
+      "sourceRequirements": "Repository collection; browser build URL not verified",
+      "verificationChecklist": "Locate playable browser build and asset requirements",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false
+    },
+    {
+      "id": "discovery-008",
+      "title": "Neverball",
+      "category": "Physics",
+      "sourceUrl": "https://github.com/MahanKenway/PlayChive",
+      "sourceRequirements": "Repository collection; browser build URL not verified",
+      "verificationChecklist": "Locate actual game URL and test input",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false
+    },
+    {
+      "id": "discovery-009",
+      "title": "GNU FreeDink",
+      "category": "RPG",
+      "sourceUrl": "https://github.com/MahanKenway/PlayChive",
+      "sourceRequirements": "Repository collection; browser build URL not verified",
+      "verificationChecklist": "Confirm web build and playability",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false
+    },
+    {
+      "id": "discovery-010",
+      "title": "Micropolis",
+      "category": "Simulation",
+      "sourceUrl": "https://foundplay.io/games/micropolisjs",
+      "sourceRequirements": "External listing; gameplay not tested",
+      "verificationChecklist": "Confirm direct playable link",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false
+    },
+    {
+      "id": "discovery-011",
+      "title": "OpenTyrian",
+      "category": "Arcade Shooter",
+      "sourceUrl": "https://github.com/MahanKenway/PlayChive",
+      "sourceRequirements": "Repository collection; browser build URL not verified",
+      "verificationChecklist": "Confirm web build and controls",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false
+    },
+    {
+      "id": "discovery-012",
+      "title": "C-Dogs SDL",
+      "category": "Shooter",
+      "sourceUrl": "https://github.com/MahanKenway/PlayChive",
+      "sourceRequirements": "Repository collection; browser build URL not verified",
+      "verificationChecklist": "Confirm web build and controls",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false
+    }
+  ]
+}
