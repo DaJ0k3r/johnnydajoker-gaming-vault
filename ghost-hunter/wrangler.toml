@@ -1,0 +1,11 @@
+name = "madhouse-ghost-hunter"
+main = "src/index.js"
+compatibility_date = "2026-11-02"
+
+[triggers]
+crons = ["0 3 * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "madhouse-ghost-hunter"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
