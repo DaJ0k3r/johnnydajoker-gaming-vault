@@ -2240,20 +2240,21 @@ window.VAULT_CATALOG = [
   },
   {
     "id": 127,
-    "title": "NFSCRB.xyz — Racing Game (Identification Pending)",
+    "title": "Need for Speed Carbon",
     "type": "GAME",
     "url": "https://nfscrb.xyz/",
     "category": "Racing",
     "tags": [
-      "Community suggestion",
+      "Classic port",
+      "Racing",
       "pc-listed"
     ],
     "thumbnail": null,
-    "description": "Community-suggested browser racing link; exact game identity and playability awaiting verification.",
-    "status": "unverified",
-    "lastChecked": null,
-    "notes": "Corrected URL at user's request 2026-11-02 (previously nfsc.xyz). Not yet manually verified.",
-    "legacyKind": "External browser link",
+    "description": "Need for Speed Carbon browser racing experience · Community-verified destination",
+    "status": "verified",
+    "lastChecked": "2026-11-02",
+    "notes": "User confirmed the site and game as Need for Speed Carbon and reported it working on 2026-11-02. Destination user-verified; complete gameplay not independently tested.",
+    "legacyKind": "Classic port",
     "legacyDevice": "PC"
   }
 ];
