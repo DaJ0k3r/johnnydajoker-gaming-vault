@@ -142,6 +142,78 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false
+    },
+    {
+      "id": "discovery-013",
+      "title": "Road Rash (1996) browser remake",
+      "category": "Racing",
+      "playUrl": "https://roadrash.pages.dev/",
+      "sourceUrl": "https://portedgames.com/road-rash-browser/",
+      "sourceRequirements": "Desktop and touch controls reported; unofficial original art and music; check races and rights",
+      "verificationChecklist": "Test actual game start, controls, mobile support, stability and rights before publishing",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false
+    },
+    {
+      "id": "discovery-014",
+      "title": "WipEout (1995) browser port",
+      "category": "Racing",
+      "playUrl": "https://phoboslab.org/wipegame/",
+      "sourceUrl": "https://portedgames.com/wipeout/",
+      "sourceRequirements": "Minimal ~11 MB or full ~144 MB; desktop; rights of bundled game data unclear",
+      "verificationChecklist": "Test actual game start, controls, mobile support, stability and rights before publishing",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false
+    },
+    {
+      "id": "discovery-015",
+      "title": "OpenTTD Online",
+      "category": "Strategy",
+      "playUrl": "https://openttdonline.com/",
+      "sourceUrl": "https://portedgames.com/openttd-browser/",
+      "sourceRequirements": "Open-source GPL build; free graphics download on first run; desktop controls",
+      "verificationChecklist": "Test actual game start, controls, mobile support, stability and rights before publishing",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false
+    },
+    {
+      "id": "discovery-016",
+      "title": "QuakeWorld browser",
+      "category": "Shooter",
+      "playUrl": "https://q1.pieter.com/",
+      "sourceUrl": "https://portedgames.com/browser/",
+      "sourceRequirements": "Shareware episode; multiplayer browser client; keyboard and mouse",
+      "verificationChecklist": "Test actual game start, controls, mobile support, stability and rights before publishing",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false
+    },
+    {
+      "id": "discovery-017",
+      "title": "GTA III browser edition",
+      "category": "Action",
+      "playUrl": "https://quenq.com/apps/gta-3/",
+      "sourceUrl": "https://portedgames.com/gta-3/",
+      "sourceRequirements": "Unofficial; copyrighted game assets streamed without stated license; review before public listing",
+      "verificationChecklist": "Test actual game start, controls, mobile support, stability and rights before publishing",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false
+    },
+    {
+      "id": "discovery-018",
+      "title": "The Simpsons: Hit & Run alternative port",
+      "category": "Driving",
+      "playUrl": "https://shar.harshvirdhaliwal.com/",
+      "sourceUrl": "https://portedgames.com/simpsons-hit-and-run/",
+      "sourceRequirements": "Alternative pre-beta; test reliability and copyright status",
+      "verificationChecklist": "Test actual game start, controls, mobile support, stability and rights before publishing",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false
     }
   ]
 }
