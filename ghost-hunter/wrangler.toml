@@ -8,4 +8,4 @@ crons = ["0 3 * * *"]
 [[d1_databases]]
 binding = "DB"
 database_name = "madhouse-ghost-hunter"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+database_id = "07edfb5d-19fd-4e09-9cfe-cbb2eabe80f9"
