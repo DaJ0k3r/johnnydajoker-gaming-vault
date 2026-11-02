@@ -2240,19 +2240,19 @@ window.VAULT_CATALOG = [
   },
   {
     "id": 127,
-    "title": "NFSC.xyz — Game Link (Identification Pending)",
+    "title": "NFSCRB.xyz — Racing Game (Identification Pending)",
     "type": "GAME",
-    "url": "https://nfsc.xyz/",
+    "url": "https://nfscrb.xyz/",
     "category": "Racing",
     "tags": [
       "Community suggestion",
       "pc-listed"
     ],
     "thumbnail": null,
-    "description": "Community-suggested browser racing link. Game identity and playability have not yet been confirmed.",
+    "description": "Community-suggested browser racing link; exact game identity and playability awaiting verification.",
     "status": "unverified",
     "lastChecked": null,
-    "notes": "Added at user's request 2026-11-02. Automated site fetch failed; exact game identity, safety and playability need manual review before verification or promotion.",
+    "notes": "Corrected URL at user's request 2026-11-02 (previously nfsc.xyz). Not yet manually verified.",
     "legacyKind": "External browser link",
     "legacyDevice": "PC"
   }
