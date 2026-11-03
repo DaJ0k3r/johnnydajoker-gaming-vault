@@ -2253,7 +2253,7 @@ window.VAULT_CATALOG = [
     "description": "Need for Speed Carbon browser racing experience · Community-verified destination",
     "status": "verified",
     "lastChecked": "2026-11-02",
-    "notes": "User confirmed the site and game as Need for Speed Carbon and reported it working on 2026-11-02. Destination user-verified; complete gameplay not independently tested.",
+    "notes": "User reconfirmed Need for Speed Carbon is working on 2026-11-03.",
     "legacyKind": "Classic port",
     "legacyDevice": "PC"
   },
