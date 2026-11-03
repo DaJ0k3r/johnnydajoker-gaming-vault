@@ -151,9 +151,11 @@
       "sourceUrl": "https://portedgames.com/road-rash-browser/",
       "sourceRequirements": "Desktop and touch controls reported; unofficial original art and music; check races and rights",
       "verificationChecklist": "Test actual game start, controls, mobile support, stability and rights before publishing",
-      "status": "unverified",
+      "status": "verified",
       "gameplayTested": false,
-      "readyForPublicCatalogue": false
+      "readyForPublicCatalogue": true,
+      "userTestedAt": "2026-11-03",
+      "verificationNote": "User confirmed destination works; full gameplay not independently verified."
     },
     {
       "id": "discovery-014",
@@ -163,9 +165,11 @@
       "sourceUrl": "https://portedgames.com/wipeout/",
       "sourceRequirements": "Minimal ~11 MB or full ~144 MB; desktop; rights of bundled game data unclear",
       "verificationChecklist": "Test actual game start, controls, mobile support, stability and rights before publishing",
-      "status": "unverified",
+      "status": "verified",
       "gameplayTested": false,
-      "readyForPublicCatalogue": false
+      "readyForPublicCatalogue": true,
+      "userTestedAt": "2026-11-03",
+      "verificationNote": "User confirmed destination works; full gameplay not independently verified."
     },
     {
       "id": "discovery-015",
@@ -175,9 +179,11 @@
       "sourceUrl": "https://portedgames.com/openttd-browser/",
       "sourceRequirements": "Open-source GPL build; free graphics download on first run; desktop controls",
       "verificationChecklist": "Test actual game start, controls, mobile support, stability and rights before publishing",
-      "status": "unverified",
+      "status": "verified",
       "gameplayTested": false,
-      "readyForPublicCatalogue": false
+      "readyForPublicCatalogue": true,
+      "userTestedAt": "2026-11-03",
+      "verificationNote": "User confirmed destination works; full gameplay not independently verified."
     },
     {
       "id": "discovery-016",
@@ -187,9 +193,11 @@
       "sourceUrl": "https://portedgames.com/browser/",
       "sourceRequirements": "Shareware episode; multiplayer browser client; keyboard and mouse",
       "verificationChecklist": "Test actual game start, controls, mobile support, stability and rights before publishing",
-      "status": "unverified",
+      "status": "verified",
       "gameplayTested": false,
-      "readyForPublicCatalogue": false
+      "readyForPublicCatalogue": true,
+      "userTestedAt": "2026-11-03",
+      "verificationNote": "User confirmed destination works; full gameplay not independently verified."
     },
     {
       "id": "discovery-017",
