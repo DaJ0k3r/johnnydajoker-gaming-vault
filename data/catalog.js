@@ -2310,5 +2310,95 @@ window.VAULT_CATALOG = [
     "notes": "User reported this browser destination working on 2026-11-03. Full gameplay and device support not independently verified; rights and content requirements may vary.",
     "legacyKind": "Classic port",
     "legacyDevice": "PC"
+  },
+  {
+    "id": 131,
+    "title": "PolyTrack",
+    "type": "GAME",
+    "url": "https://kodub.itch.io/polytrack",
+    "category": "Racing",
+    "tags": [
+      "discovery-queue",
+      "needs-user-test"
+    ],
+    "thumbnail": null,
+    "description": "Browser game discovery candidate; awaiting user test",
+    "status": "unverified",
+    "lastChecked": null,
+    "notes": "Not yet gameplay-tested. Check availability, requirements and rights.",
+    "legacyKind": "Browser original",
+    "legacyDevice": "PC"
+  },
+  {
+    "id": 132,
+    "title": "OpenLara",
+    "type": "GAME",
+    "url": "https://xproger.info/projects/OpenLara/",
+    "category": "Adventure",
+    "tags": [
+      "discovery-queue",
+      "needs-user-test"
+    ],
+    "thumbnail": null,
+    "description": "Browser game discovery candidate; awaiting user test",
+    "status": "unverified",
+    "lastChecked": null,
+    "notes": "Not yet gameplay-tested. Check availability, requirements and rights.",
+    "legacyKind": "Browser original",
+    "legacyDevice": "PC"
+  },
+  {
+    "id": 133,
+    "title": "Mythwild",
+    "type": "GAME",
+    "url": "https://mythwild.com/",
+    "category": "Adventure",
+    "tags": [
+      "discovery-queue",
+      "needs-user-test"
+    ],
+    "thumbnail": null,
+    "description": "Browser game discovery candidate; awaiting user test",
+    "status": "unverified",
+    "lastChecked": null,
+    "notes": "Not yet gameplay-tested. Check availability, requirements and rights.",
+    "legacyKind": "Browser original",
+    "legacyDevice": "PC"
+  },
+  {
+    "id": 134,
+    "title": "LEGO Island browser project",
+    "type": "GAME",
+    "url": "https://isle.pizza/",
+    "category": "Classic",
+    "tags": [
+      "discovery-queue",
+      "needs-user-test"
+    ],
+    "thumbnail": null,
+    "description": "Browser game discovery candidate; awaiting user test",
+    "status": "unverified",
+    "lastChecked": null,
+    "notes": "Not yet gameplay-tested. Check availability, requirements and rights.",
+    "legacyKind": "Browser original",
+    "legacyDevice": "PC"
+  },
+  {
+    "id": 135,
+    "title": "itch.io Free HTML5 Games",
+    "type": "RESOURCE",
+    "url": "https://itch.io/games/free/html5",
+    "category": "Resource",
+    "tags": [
+      "discovery-queue",
+      "needs-user-test"
+    ],
+    "thumbnail": null,
+    "description": "Browser game discovery candidate; awaiting user test",
+    "status": "unverified",
+    "lastChecked": null,
+    "notes": "Not yet gameplay-tested. Check availability, requirements and rights.",
+    "legacyKind": "Directory",
+    "legacyDevice": "PC"
   }
 ];
