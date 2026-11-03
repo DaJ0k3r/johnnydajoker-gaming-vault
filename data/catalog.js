@@ -2400,5 +2400,95 @@ window.VAULT_CATALOG = [
     "notes": "Not yet gameplay-tested. Check availability, requirements and rights.",
     "legacyKind": "Directory",
     "legacyDevice": "PC"
+  },
+  {
+    "id": 136,
+    "title": "After the Sirens",
+    "type": "GAME",
+    "url": "https://www.hendrickresearch.com/games/after-the-sirens/",
+    "category": "Survival",
+    "tags": [
+      "discovery-queue",
+      "needs-user-test"
+    ],
+    "thumbnail": null,
+    "description": "Developer-listed browser game; awaiting MADHOUSE gameplay test",
+    "status": "unverified",
+    "lastChecked": null,
+    "notes": "Developer page reviewed 2026-11-03. User gameplay test still needed.",
+    "legacyKind": "Browser original",
+    "legacyDevice": "Both"
+  },
+  {
+    "id": 137,
+    "title": "Fin's",
+    "type": "GAME",
+    "url": "https://www.hendrickresearch.com/play/fins/",
+    "category": "Simulation",
+    "tags": [
+      "discovery-queue",
+      "needs-user-test"
+    ],
+    "thumbnail": null,
+    "description": "Developer-listed browser game; awaiting MADHOUSE gameplay test",
+    "status": "unverified",
+    "lastChecked": null,
+    "notes": "Developer page reviewed 2026-11-03. User gameplay test still needed.",
+    "legacyKind": "Browser original",
+    "legacyDevice": "Both"
+  },
+  {
+    "id": 138,
+    "title": "TinyLaps",
+    "type": "GAME",
+    "url": "https://www.hendrickresearch.com/play/tinylaps/",
+    "category": "Racing",
+    "tags": [
+      "discovery-queue",
+      "needs-user-test"
+    ],
+    "thumbnail": null,
+    "description": "Developer-listed browser game; awaiting MADHOUSE gameplay test",
+    "status": "unverified",
+    "lastChecked": null,
+    "notes": "Developer page reviewed 2026-11-03. User gameplay test still needed.",
+    "legacyKind": "Browser original",
+    "legacyDevice": "Both"
+  },
+  {
+    "id": 139,
+    "title": "Haywire",
+    "type": "GAME",
+    "url": "https://www.hendrickresearch.com/play/haywire/",
+    "category": "Puzzle",
+    "tags": [
+      "discovery-queue",
+      "needs-user-test"
+    ],
+    "thumbnail": null,
+    "description": "Developer-listed browser game; awaiting MADHOUSE gameplay test",
+    "status": "unverified",
+    "lastChecked": null,
+    "notes": "Developer page reviewed 2026-11-03. User gameplay test still needed.",
+    "legacyKind": "Browser original",
+    "legacyDevice": "Both"
+  },
+  {
+    "id": 140,
+    "title": "Hendrick Research Games",
+    "type": "RESOURCE",
+    "url": "https://www.hendrickresearch.com/games/",
+    "category": "Resource",
+    "tags": [
+      "discovery-queue",
+      "needs-user-test"
+    ],
+    "thumbnail": null,
+    "description": "Developer-listed browser game; awaiting MADHOUSE gameplay test",
+    "status": "unverified",
+    "lastChecked": null,
+    "notes": "Developer page reviewed 2026-11-03. User gameplay test still needed.",
+    "legacyKind": "Directory",
+    "legacyDevice": "Both"
   }
 ];
