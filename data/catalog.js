@@ -2256,5 +2256,59 @@ window.VAULT_CATALOG = [
     "notes": "User confirmed the site and game as Need for Speed Carbon and reported it working on 2026-11-02. Destination user-verified; complete gameplay not independently tested.",
     "legacyKind": "Classic port",
     "legacyDevice": "PC"
+  },
+  {
+    "id": 128,
+    "title": "Road Rash (1996)",
+    "type": "GAME",
+    "url": "https://roadrash.pages.dev/",
+    "category": "Racing",
+    "tags": [
+      "Classic port",
+      "mobile-listed"
+    ],
+    "thumbnail": null,
+    "description": "Browser remake of classic motorcycle combat racing; user-confirmed working destination.",
+    "status": "verified",
+    "lastChecked": "2026-11-03",
+    "notes": "User reported this browser destination working on 2026-11-03. Full gameplay and device support not independently verified; rights and content requirements may vary.",
+    "legacyKind": "Classic port",
+    "legacyDevice": "Both"
+  },
+  {
+    "id": 129,
+    "title": "WipEout (1995)",
+    "type": "GAME",
+    "url": "https://phoboslab.org/wipegame/",
+    "category": "Racing",
+    "tags": [
+      "Classic port",
+      "pc-listed"
+    ],
+    "thumbnail": null,
+    "description": "Browser port of futuristic anti-gravity racing; user-confirmed working destination.",
+    "status": "verified",
+    "lastChecked": "2026-11-03",
+    "notes": "User reported this browser destination working on 2026-11-03. Full gameplay and device support not independently verified; rights and content requirements may vary.",
+    "legacyKind": "Classic port",
+    "legacyDevice": "PC"
+  },
+  {
+    "id": 130,
+    "title": "OpenTTD Online",
+    "type": "GAME",
+    "url": "https://openttdonline.com/",
+    "category": "Strategy",
+    "tags": [
+      "Classic port",
+      "pc-listed"
+    ],
+    "thumbnail": null,
+    "description": "Open-source transport management simulation in the browser; user-confirmed working destination.",
+    "status": "verified",
+    "lastChecked": "2026-11-03",
+    "notes": "User reported this browser destination working on 2026-11-03. Full gameplay and device support not independently verified; rights and content requirements may vary.",
+    "legacyKind": "Classic port",
+    "legacyDevice": "PC"
   }
 ];
