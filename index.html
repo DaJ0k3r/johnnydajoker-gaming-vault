@@ -251,4 +251,27 @@ function draw(){const f=filter.value;const selected=catalog.filter(g=>f==='all'|
 filter.addEventListener('change',draw);
 document.getElementById('lab-copy').addEventListener('click',async()=>{const lines=catalog.filter(g=>results[g.id]).map(g=>g.title+' — '+results[g.id]+' — '+g.url);const message='MADHOUSE TEST LAB RESULTS\n'+(lines.join('\n')||'No tests recorded yet');try{await navigator.clipboard.writeText(message);alert('Test results copied. Paste them into our chat!')}catch{window.prompt('Copy your test results:',message)}});
 draw()})();
-</script></body></html>
+</script>
+<style>
+/* MADHOUSE 6.0 — community most-wanted requests */
+#most-wanted{max-width:1200px;margin:28px auto;padding:24px;border:1px solid #4e8354;border-radius:20px;background:linear-gradient(130deg,#12241a,#090f0c);color:#eaffeb}
+#most-wanted h2{margin:0 0 8px;color:#a4ff83;font-size:clamp(24px,3vw,34px)}
+#most-wanted p{color:#b8cabb;line-height:1.55}
+#most-wanted form{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+#most-wanted input{flex:1;min-width:200px;background:#0d1a12;color:white;border:1px solid #527959}
+#most-wanted button{background:#9af47b;color:#07190a}
+#most-wanted .mw-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+#most-wanted .mw-chip{border:1px solid #456c4b;border-radius:10px;padding:9px 12px;background:#15251a;color:#d7f9d7}
+#most-wanted .mw-note{font-size:12px}
+</style>
+<section id="most-wanted" aria-labelledby="mw-title">
+<h2 id="mw-title">MOST WANTED // WHAT SHOULD WE HUNT DOWN NEXT?</h2>
+<p>Got an old favourite you'd love to play again? Add it to your personal wishlist, then copy your requests and send them to Johnny Da Joker. No account needed.</p>
+<form id="mw-form"><input id="mw-input" maxlength="90" required placeholder="That one game you can't forget..." aria-label="Game you'd like added"><button type="submit">ADD TO MY WISHLIST</button><button type="button" id="mw-copy">COPY MY REQUESTS</button></form>
+<div id="mw-list" class="mw-list" aria-live="polite"></div>
+<p class="mw-note">Requests are saved only on this device. Adding a game here does not submit it to the site or promise availability. Copy and share your list with us.</p>
+</section>
+<script>
+(()=>{const key='jdj-most-wanted-v1',form=document.getElementById('mw-form'),input=document.getElementById('mw-input'),list=document.getElementById('mw-list');let names=[];try{const saved=JSON.parse(localStorage.getItem(key)||'[]');if(Array.isArray(saved))names=saved.filter(v=>typeof v==='string').slice(0,30)}catch{}function save(){try{localStorage.setItem(key,JSON.stringify(names))}catch{}}function draw(){list.replaceChildren();if(!names.length){list.textContent='Your wishlist is empty. What game should we look for?';return}names.forEach((name,i)=>{const chip=document.createElement('button');chip.type='button';chip.className='mw-chip';chip.textContent=name+' ×';chip.title='Remove '+name;chip.setAttribute('aria-label','Remove '+name);chip.addEventListener('click',()=>{names.splice(i,1);save();draw()});list.append(chip)})}form.addEventListener('submit',e=>{e.preventDefault();const name=input.value.trim().replace(/\s+/g,' ');if(!name||names.some(v=>v.toLowerCase()===name.toLowerCase()))return;names.unshift(name);names=names.slice(0,30);save();input.value='';draw()});document.getElementById('mw-copy').addEventListener('click',async()=>{const message='MADHOUSE MOST WANTED GAMES\n'+(names.map((v,i)=>(i+1)+'. '+v).join('\n')||'No requests yet');try{await navigator.clipboard.writeText(message);alert('Wishlist copied. Paste it in a comment or message!')}catch{window.prompt('Copy your wishlist:',message)}});draw()})();
+</script>
+</body></html>
