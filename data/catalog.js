@@ -2510,4 +2510,24 @@ window.VAULT_CATALOG = [
     "legacyKind": "MADHOUSE Original",
     "legacyDevice": "Both"
   }
+,
+  {
+    "id": 142,
+    "title": "Nightshift Racer — MADHOUSE Original",
+    "type": "GAME",
+    "url": "games/nightshift-racer/",
+    "category": "Racing",
+    "tags": [
+      "madhouse-original",
+      "direct-play",
+      "mobile-listed"
+    ],
+    "thumbnail": null,
+    "description": "Original neon highway traffic-dodging arcade racer, built for mobile and desktop.",
+    "status": "unverified",
+    "lastChecked": null,
+    "notes": "New original browser game. Awaiting public deployment and hands-on gameplay test before verified badge.",
+    "legacyKind": "MADHOUSE Original",
+    "legacyDevice": "Both"
+  }
 ];
