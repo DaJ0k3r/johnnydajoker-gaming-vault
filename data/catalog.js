@@ -2522,7 +2522,7 @@ window.VAULT_CATALOG = [
       "direct-play",
       "mobile-listed"
     ],
-    "thumbnail": null,
+    "thumbnail": "games/nightshift-racer/cover.svg",
     "description": "Original neon highway traffic-dodging arcade racer, built for mobile and desktop.",
     "status": "verified",
     "lastChecked": "2026-11-07",
