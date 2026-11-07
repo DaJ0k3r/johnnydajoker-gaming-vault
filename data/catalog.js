@@ -2504,9 +2504,9 @@ window.VAULT_CATALOG = [
     ],
     "thumbnail": null,
     "description": "Original neon arcade dodging game. Play directly in the Vault on mobile or desktop.",
-    "status": "verified",
-    "lastChecked": "2026-11-07",
-    "notes": "User confirmed live game working on 2026-11-07 after GitHub Pages deployment completed; detailed gameplay and controls not independently tested.",
+    "status": "unverified",
+    "lastChecked": null,
+    "notes": "User confirmed page opens on 2026-11-07, but gameplay has not been tested or confirmed. Keep unverified until START, movement, collisions and restart are tested.",
     "legacyKind": "MADHOUSE Original",
     "legacyDevice": "Both"
   }
