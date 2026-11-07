@@ -2524,9 +2524,9 @@ window.VAULT_CATALOG = [
     ],
     "thumbnail": null,
     "description": "Original neon highway traffic-dodging arcade racer, built for mobile and desktop.",
-    "status": "unverified",
-    "lastChecked": null,
-    "notes": "New original browser game. Awaiting public deployment and hands-on gameplay test before verified badge.",
+    "status": "verified",
+    "lastChecked": "2026-11-07",
+    "notes": "User tested Nightshift Racer 2.0 and confirmed they love the Arcade/Career experience on 2026-11-07. Full six-level completion and persistence not separately confirmed.",
     "legacyKind": "MADHOUSE Original",
     "legacyDevice": "Both"
   }
