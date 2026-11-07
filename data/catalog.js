@@ -2490,5 +2490,24 @@ window.VAULT_CATALOG = [
     "notes": "Developer page reviewed 2026-11-03. User gameplay test still needed.",
     "legacyKind": "Directory",
     "legacyDevice": "Both"
+  },
+  {
+    "id": 141,
+    "title": "Neon Dodge — MADHOUSE Original",
+    "type": "GAME",
+    "url": "games/neon-dodge/",
+    "category": "Arcade",
+    "tags": [
+      "madhouse-original",
+      "direct-play",
+      "mobile-listed"
+    ],
+    "thumbnail": null,
+    "description": "Original neon arcade dodging game. Play directly in the Vault on mobile or desktop.",
+    "status": "unverified",
+    "lastChecked": null,
+    "notes": "Original game source hosted in this repository. Needs live deployment and hands-on gameplay test before verified badge.",
+    "legacyKind": "MADHOUSE Original",
+    "legacyDevice": "Both"
   }
 ];
