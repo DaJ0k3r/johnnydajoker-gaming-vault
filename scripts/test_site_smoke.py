@@ -28,8 +28,10 @@ class VaultSmokeTests(unittest.TestCase):
         self.assertTrue(all(g["type"] in ("GAME", "RESOURCE") for g in GAMES))
 
     def test_first_paint_count_matches_catalogue(self):
-        for element_id in ("total", "visible"):
-            self.assertIn(f'<b id="{element_id}">{len(GAMES)}</b>', HTML)
+        self.assertIn(f'<b id="total">{len(GAMES)}</b>', HTML)
+        self.assertIn(f'<b id="visible">{sum(g["status"] == "verified" for g in GAMES)}</b>', HTML)
+        self.assertIn("<!-- BUILD:START FIRST CARDS -->", HTML)
+        self.assertIn("<!-- BUILD:END FIRST CARDS -->", HTML)
 
     def test_existing_features_and_storage_keys(self):
         parsed = Tags()
