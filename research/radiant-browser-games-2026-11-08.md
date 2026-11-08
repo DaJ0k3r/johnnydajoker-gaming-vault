@@ -31,3 +31,8 @@ All entries UNVERIFIED in MADHOUSE. Link reachability and actual gameplay are di
 - https://radiantoptimizergames.com/
 - https://www.inbrowsergames.org/?status=files
 - https://portedgames.com/call-of-duty-browser/
+
+## User test results — 2026-11-08
+- **Black Ops Zombies (vel.gg): FAILED**. User reports link/game failed. Do not mark verified or promote.
+- **Modern Warfare 2 (play.mw2web.com): SITE OPENS**. User reports working; actual gameplay not separately confirmed. Keep GAMEPLAY UNVERIFIED pending clarification.
+- **Radiant Optimizer directory (radiantoptimizer.dev): DIRECTORY OPENS**. User reports working; this is a RESOURCE, not a tested game. Do not treat all listed games as working.
