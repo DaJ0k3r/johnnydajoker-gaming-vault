@@ -28,7 +28,7 @@
       "category": "Action / Open World",
       "sourceUrl": "https://portedgames.com/browser/",
       "sourceRequirements": "Port discovery directory; original game files may be required",
-      "verificationChecklist": "Verify legitimate engine port and game-data requirement",
+      "verificationChecklist": "Dedicated iframe host identified; independently test opening, actual gameplay, controls, stability and rights before public listing",
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
@@ -37,7 +37,8 @@
         "result": "working_on_source_site",
         "reportedAt": "2026-11-09",
         "notes": "User reports successful play on Quenq; independent direct launch and rights not verified"
-      }
+      },
+      "independentLaunchCandidate": "https://vc.quenq.com/"
     },
     {
       "id": "discovery-003",
@@ -212,7 +213,7 @@
       "playUrl": "https://quenq.com/apps/gta-3/",
       "sourceUrl": "https://portedgames.com/gta-3/",
       "sourceRequirements": "Unofficial; copyrighted game assets streamed without stated license; review before public listing",
-      "verificationChecklist": "Test actual game start, controls, mobile support, stability and rights before publishing",
+      "verificationChecklist": "Dedicated iframe host identified; independently test opening, actual gameplay, controls, stability and rights before public listing",
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
@@ -220,7 +221,8 @@
         "result": "working_on_source_site",
         "reportedAt": "2026-11-09",
         "notes": "User reports successful play on Quenq; independent direct launch and rights not verified"
-      }
+      },
+      "independentLaunchCandidate": "https://iii.quenq.com/"
     },
     {
       "id": "discovery-018",
@@ -241,7 +243,7 @@
       "playUrl": "https://quenq.com/apps/diamond-rush/",
       "sourceUrl": "https://quenq.com/apps/diamond-rush/",
       "sourceRequirements": "Browser playable on Quenq according to user; rights and independent launch need review",
-      "verificationChecklist": "Confirm independent launch, controls, mobile usability, stability and rights before publishing",
+      "verificationChecklist": "Source page reachable; independently test launch, gameplay, mobile controls, stability and rights before public listing",
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
@@ -258,7 +260,7 @@
       "playUrl": "https://quenq.com/apps/3d-pinball-space-cadet/",
       "sourceUrl": "https://quenq.com/apps/3d-pinball-space-cadet/",
       "sourceRequirements": "Browser playable on Quenq according to user; rights and independent launch need review",
-      "verificationChecklist": "Confirm independent launch, controls, mobile usability, stability and rights before publishing",
+      "verificationChecklist": "Source page reachable; independently test launch, gameplay, mobile controls, stability and rights before public listing",
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
