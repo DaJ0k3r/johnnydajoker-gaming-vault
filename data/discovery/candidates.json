@@ -31,7 +31,13 @@
       "verificationChecklist": "Verify legitimate engine port and game-data requirement",
       "status": "unverified",
       "gameplayTested": false,
-      "readyForPublicCatalogue": false
+      "readyForPublicCatalogue": false,
+      "playUrl": "https://quenq.com/apps/vice-city/",
+      "userTest": {
+        "result": "working_on_source_site",
+        "reportedAt": "2026-11-09",
+        "notes": "User reports successful play on Quenq; independent direct launch and rights not verified"
+      }
     },
     {
       "id": "discovery-003",
@@ -209,7 +215,12 @@
       "verificationChecklist": "Test actual game start, controls, mobile support, stability and rights before publishing",
       "status": "unverified",
       "gameplayTested": false,
-      "readyForPublicCatalogue": false
+      "readyForPublicCatalogue": false,
+      "userTest": {
+        "result": "working_on_source_site",
+        "reportedAt": "2026-11-09",
+        "notes": "User reports successful play on Quenq; independent direct launch and rights not verified"
+      }
     },
     {
       "id": "discovery-018",
@@ -222,6 +233,40 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false
+    },
+    {
+      "id": "discovery-019",
+      "title": "Diamond Rush",
+      "category": "Puzzle / Adventure",
+      "playUrl": "https://quenq.com/apps/diamond-rush/",
+      "sourceUrl": "https://quenq.com/apps/diamond-rush/",
+      "sourceRequirements": "Browser playable on Quenq according to user; rights and independent launch need review",
+      "verificationChecklist": "Confirm independent launch, controls, mobile usability, stability and rights before publishing",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "userTest": {
+        "result": "working_on_source_site",
+        "reportedAt": "2026-11-09",
+        "notes": "User reports successful play on Quenq"
+      }
+    },
+    {
+      "id": "discovery-020",
+      "title": "3D Pinball: Space Cadet",
+      "category": "Arcade / Pinball",
+      "playUrl": "https://quenq.com/apps/3d-pinball-space-cadet/",
+      "sourceUrl": "https://quenq.com/apps/3d-pinball-space-cadet/",
+      "sourceRequirements": "Browser playable on Quenq according to user; rights and independent launch need review",
+      "verificationChecklist": "Confirm independent launch, controls, mobile usability, stability and rights before publishing",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "userTest": {
+        "result": "working_on_source_site",
+        "reportedAt": "2026-11-09",
+        "notes": "User reports successful play on Quenq"
+      }
     }
   ]
 }
