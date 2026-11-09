@@ -2509,8 +2509,7 @@ window.VAULT_CATALOG = [
     "notes": "User confirmed successful gameplay on Android on 2026-11-07 after mobile layout fix: game starts and plays correctly. Other devices not yet tested.",
     "legacyKind": "MADHOUSE Original",
     "legacyDevice": "Both"
-  }
-,
+  },
   {
     "id": 142,
     "title": "Nightshift Racer — MADHOUSE Original",
@@ -2529,5 +2528,119 @@ window.VAULT_CATALOG = [
     "notes": "User confirmed testing both Arcade and Career modes on 2026-11-07. Full six-level completion and save persistence not separately confirmed.",
     "legacyKind": "MADHOUSE Original",
     "legacyDevice": "Both"
+  },
+  {
+    "id": 143,
+    "title": "Grand Theft Auto III",
+    "type": "GAME",
+    "url": "https://quenq.com/apps/gta-3/",
+    "category": "Action",
+    "tags": [
+      "Community browser project",
+      "user-tested",
+      "external-host"
+    ],
+    "thumbnail": null,
+    "description": "Open-world Liberty City browser edition.",
+    "status": "verified",
+    "lastChecked": "2026-11-09",
+    "notes": "User reported successful gameplay on source site in Nov 2026. Vault link opens an external host; independent direct launch, long-term reliability and game asset licensing not established.",
+    "legacyKind": "Community browser project",
+    "legacyDevice": "Both"
+  },
+  {
+    "id": 144,
+    "title": "Grand Theft Auto: Vice City",
+    "type": "GAME",
+    "url": "https://quenq.com/apps/vice-city/",
+    "category": "Action",
+    "tags": [
+      "Community browser project",
+      "user-tested",
+      "external-host"
+    ],
+    "thumbnail": null,
+    "description": "1980s Miami-inspired open-world browser edition.",
+    "status": "verified",
+    "lastChecked": "2026-11-09",
+    "notes": "User reported successful gameplay on source site in Nov 2026. Vault link opens an external host; independent direct launch, long-term reliability and game asset licensing not established.",
+    "legacyKind": "Community browser project",
+    "legacyDevice": "Both"
+  },
+  {
+    "id": 145,
+    "title": "Diamond Rush",
+    "type": "GAME",
+    "url": "https://quenq.com/apps/diamond-rush/",
+    "category": "Puzzle",
+    "tags": [
+      "Community browser project",
+      "user-tested",
+      "external-host"
+    ],
+    "thumbnail": null,
+    "description": "Classic Gameloft adventure puzzle game in the browser.",
+    "status": "verified",
+    "lastChecked": "2026-11-09",
+    "notes": "User reported successful gameplay on source site in Nov 2026. Vault link opens an external host; independent direct launch, long-term reliability and game asset licensing not established.",
+    "legacyKind": "Community browser project",
+    "legacyDevice": "Both"
+  },
+  {
+    "id": 146,
+    "title": "3D Pinball: Space Cadet",
+    "type": "GAME",
+    "url": "https://quenq.com/apps/3d-pinball-space-cadet/",
+    "category": "Arcade",
+    "tags": [
+      "Community browser project",
+      "user-tested",
+      "external-host"
+    ],
+    "thumbnail": null,
+    "description": "Classic Windows pinball game playable in a browser.",
+    "status": "verified",
+    "lastChecked": "2026-11-09",
+    "notes": "User reported successful gameplay on source site in Nov 2026. Vault link opens an external host; independent direct launch, long-term reliability and game asset licensing not established.",
+    "legacyKind": "Community browser project",
+    "legacyDevice": "Both"
+  },
+  {
+    "id": 147,
+    "title": "Skate 3",
+    "type": "GAME",
+    "url": "https://skate.aaddpp.lol",
+    "category": "Sports",
+    "tags": [
+      "Community browser project",
+      "user-tested",
+      "external-host"
+    ],
+    "thumbnail": null,
+    "description": "Unofficial browser-based skating recreation.",
+    "status": "verified",
+    "lastChecked": "2026-11-09",
+    "notes": "User reported successful gameplay on source site in Nov 2026. Vault link opens an external host; independent direct launch, long-term reliability and game asset licensing not established.",
+    "legacyKind": "Community browser project",
+    "legacyDevice": "PC"
+  },
+  {
+    "id": 148,
+    "title": "Half-Life",
+    "type": "GAME",
+    "url": "https://pixelsuft.github.io/hl/",
+    "category": "Action",
+    "tags": [
+      "Community browser project",
+      "user-tested",
+      "external-host"
+    ],
+    "thumbnail": null,
+    "description": "Community browser project based on the classic first-person shooter.",
+    "status": "verified",
+    "lastChecked": "2026-11-09",
+    "notes": "User reported successful gameplay on source site in Nov 2026. Vault link opens an external host; independent direct launch, long-term reliability and game asset licensing not established.",
+    "legacyKind": "Community browser project",
+    "legacyDevice": "PC"
   }
 ];
