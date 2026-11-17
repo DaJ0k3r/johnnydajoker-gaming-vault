@@ -41,6 +41,11 @@ jobs:
         run: |
           python scripts/build_first_paint.py
           git diff --exit-code -- index.html
+      - name: Validate generated SEO pages and sitemap
+        run: |
+          python scripts/build_seo.py
+          python -m unittest discover -s scripts -p 'test_seo.py' -v
+          git diff --exit-code -- sitemap.xml robots.txt genres/
       - name: Install real-browser QA
         run: python -m pip install 'playwright==1.55.0'
       - name: Desktop and mobile browser smoke tests
@@ -48,7 +53,8 @@ jobs:
       - name: Package isolated preview
         run: |
           mkdir -p preview
-          cp index.html admin.html about.html privacy.html contact.html takedown.html preview/
+          cp index.html admin.html about.html privacy.html contact.html takedown.html robots.txt sitemap.xml preview/
+          cp -R genres preview/genres
           cp -R data preview/data
           for dir in assets images img css js fonts; do
             if [ -d "$dir" ]; then cp -R "$dir" "preview/$dir"; fi
