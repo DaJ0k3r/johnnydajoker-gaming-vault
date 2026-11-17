@@ -2,6 +2,7 @@
 """SEO integrity tests: only canonical, real, indexable MADHOUSE pages."""
 import json
 from pathlib import Path
+from html import escape
 import unittest
 import xml.etree.ElementTree as ET
 
@@ -41,12 +42,12 @@ class SEOTests(unittest.TestCase):
             self.assertEqual(page.count('<article class="card">'), len(checked))
             self.assertIn("A successful destination check does not guarantee full gameplay", page)
             for game in checked:
-                self.assertIn(game["url"], page)
+                self.assertIn(escape(game["url"], quote=True), page)
             for game in games:
                 if game.get("category") != name or game.get("status") == "verified":
                     continue
                 if game["url"] not in {c["url"] for c in checked}:
-                    self.assertNotIn(f'href="{game["url"]}"', page)
+                    self.assertNotIn(f'href="{escape(game["url"], quote=True)}"', page)
 
     def test_robots_references_sitemap_without_blocking_indexable_resources(self):
         robots = (ROOT / "robots.txt").read_text(encoding="utf-8")
