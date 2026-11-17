@@ -236,6 +236,16 @@ document.querySelector('.arcade-quick')?.addEventListener('click',e=>{const b=e.
 #vault-testlab .lab-item a{color:#b0ff96;font-weight:750}
 #vault-testlab .lab-item small{display:block;color:#a4b5a6;margin-top:3px}
 #vault-testlab .lab-item select{max-width:180px}
+#lab-player[hidden]{display:none!important}
+#lab-player{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;padding:12px}
+#lab-player-panel{width:min(1400px,100%);max-height:98dvh;display:flex;flex-direction:column;border:1px solid #77c56a;border-radius:16px;overflow:hidden;background:#09150c;color:#e5ffe5}
+#lab-player-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:11px 13px;border-bottom:1px solid #385d39}
+#lab-player-bar strong{flex:1;min-width:140px;color:#afff98}
+#lab-player-bar a{color:#b0ff96}
+#lab-player-bar button{padding:8px 12px;border:1px solid #54845b;border-radius:8px;background:#18301f;color:#fff;cursor:pointer}
+#lab-player-panel p{font-size:12px;color:#b8cbb8;padding:8px 13px;margin:0}
+#lab-player-frame{display:block;border:0;width:100%;height:min(73dvh,850px);background:#050805}
+@media(max-width:600px){#lab-player-frame{height:65dvh}}
 </style>
 <section id="vault-testlab" aria-labelledby="testlab-title">
 <h2 id="testlab-title">THE TEST LAB // COMMUNITY CHECKS</h2>
@@ -243,11 +253,24 @@ document.querySelector('.arcade-quick')?.addEventListener('click',e=>{const b=e.
 <div class="lab-actions"><input type="search" id="lab-search" aria-label="Search Test Lab candidates" placeholder="Search all discovery games..." style="min-width:220px;flex:1;background:#0b1a10;color:#eaffea;border:1px solid #54845b;border-radius:10px;padding:10px 13px"><select id="lab-filter" aria-label="Test status"><option value="pending">Not tested by me</option><option value="all">All discovery candidates</option><option value="working">My working results</option><option value="failed">My failed results</option></select><button type="button" id="lab-copy">COPY TEST RESULTS</button><span id="lab-count" aria-live="polite"></span></div>
 <p id="lab-source-status" aria-live="polite">Loading the MADHOUSE discovery queue…</p><div id="lab-list" class="lab-list"></div>
 </section>
+<div id="lab-player" hidden role="dialog" aria-modal="true" aria-label="Experimental MADHOUSE embedded game player">
+<div id="lab-player-panel">
+<div id="lab-player-bar"><strong id="lab-player-title">MADHOUSE EXPERIMENTAL PLAYER</strong><a id="lab-player-external" target="_blank" rel="noopener noreferrer">OPEN ORIGINAL GAME</a><button type="button" id="lab-player-close">CLOSE</button></div>
+<p>Experimental inline play: some sites block embedding or require files/accounts. If the game doesn't load, use OPEN ORIGINAL GAME. A loaded frame is not a gameplay verification.</p>
+<iframe id="lab-player-frame" title="Experimental browser game player" sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms" allow="autoplay; fullscreen; gamepad" allowfullscreen referrerpolicy="no-referrer"></iframe>
+</div></div>
 <script>
 (()=>{const root=document.getElementById('vault-testlab');if(!root)return;
 let catalog=(window.VAULT_CATALOG||[]).filter(g=>g.status==='unverified'&&g.type==='GAME').map(g=>({...g,fromDiscovery:false}));
 const storageKey='jdj-testlab-v1';let results={};try{results=JSON.parse(localStorage.getItem(storageKey)||'{}')||{}}catch{}
 const list=document.getElementById('lab-list'),filter=document.getElementById('lab-filter'),search=document.getElementById('lab-search'),status=document.getElementById('lab-source-status');let limit=80;
+const overlay=document.getElementById('lab-player'),frame=document.getElementById('lab-player-frame'),outlink=document.getElementById('lab-player-external');let lastFocus=null;
+function closePlayer(){overlay.hidden=true;frame.src='about:blank';if(lastFocus)lastFocus.focus()}
+function openPlayer(g){let u;try{u=new URL(g.url)}catch{return}if(u.protocol!=='https:'||u.origin===location.origin)return;
+lastFocus=document.activeElement;document.getElementById('lab-player-title').textContent=g.title+' // EXPERIMENTAL IN-VAULT PLAY';outlink.href=u.href;overlay.hidden=false;frame.src=u.href;document.getElementById('lab-player-close').focus()}
+document.getElementById('lab-player-close').addEventListener('click',closePlayer);
+overlay.addEventListener('click',e=>{if(e.target===overlay)closePlayer()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.hidden)closePlayer()});
 const urlKey=u=>{try{const v=new URL(u);return v.hostname.replace(/^www\./,'').toLowerCase()+v.pathname.replace(/\/+$/,'').toLowerCase()}catch{return ''}};
 function draw(){const f=filter.value,q=search.value.trim().toLowerCase();
 const selected=catalog.filter(g=>(f==='all'||(f==='pending'?!results[g.id]:results[g.id]===f))&&(!q||g.title.toLowerCase().includes(q)||String(g.category).toLowerCase().includes(q)));
@@ -255,6 +278,7 @@ document.getElementById('lab-count').textContent=selected.length+' results · '+
 list.replaceChildren();selected.slice(0,limit).forEach(g=>{
 const item=document.createElement('div');item.className='lab-item';const left=document.createElement('div');const a=document.createElement('a');a.textContent=g.title;a.href=g.url;a.target='_blank';a.rel='noopener noreferrer';left.append(a);
 const small=document.createElement('small');small.textContent=g.fromDiscovery?'AUTO DISCOVERY · Unverified candidate page · check actual launch and rights':g.category+' · Unverified catalogue game · opens original destination';left.append(small);
+const tryHere=document.createElement('button');tryHere.type='button';tryHere.textContent='TRY INSIDE MADHOUSE (BETA)';tryHere.style.marginTop='7px';tryHere.addEventListener('click',()=>openPlayer(g));left.append(tryHere);
 const select=document.createElement('select');select.setAttribute('aria-label','Test result for '+g.title);
 [['','Not tested'],['working','Working'],['failed','Not working'],['files','Needs game files'],['account','Needs account']].forEach(([v,t])=>{const opt=document.createElement('option');opt.value=v;opt.textContent=t;select.append(opt)});
 select.value=results[g.id]||'';select.addEventListener('change',()=>{if(select.value)results[g.id]=select.value;else delete results[g.id];try{localStorage.setItem(storageKey,JSON.stringify(results))}catch{}draw()});item.append(left,select);list.append(item)});
