@@ -143,6 +143,8 @@ class VaultSmokeTests(unittest.TestCase):
         self.assertIn('sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms"', HTML)
         self.assertIn("unverified game leads loaded for testing", HTML)
         self.assertIn("g.entryType==='RESOURCE'", HTML)
+        self.assertIn("g.status!=='unverified'||g.readyForPublicCatalogue===true", HTML)
+        self.assertIn("previously reviewed items excluded", HTML)
         self.assertIn('id="lab-sort"', HTML)
         self.assertIn("Most promising first", HTML)
         self.assertIn("g.automationEvidence?.browser", HTML)
@@ -153,6 +155,7 @@ class VaultSmokeTests(unittest.TestCase):
         self.assertIn("['embed','Embed blocked']", HTML)
         feed = json.loads((ROOT / "data" / "discovery" / "candidates.json").read_text(encoding="utf-8"))
         self.assertIsInstance(feed.get("entries"), list)
+        self.assertGreater(sum(g.get("status") == "verified" for g in feed["entries"]), 0)
 
     def test_admin_and_intro(self):
         admin = (ROOT / "admin.html").read_text(encoding="utf-8")
