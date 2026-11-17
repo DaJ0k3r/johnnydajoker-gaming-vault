@@ -1,0 +1,29 @@
+name: MADHOUSE Generate SEO Pages (temporary)
+on:
+  push:
+    branches: [seo-search-foundations-2026-11]
+    paths: ['.github/workflows/seo-generate-once.yml', 'scripts/build_seo.py']
+permissions:
+  contents: write
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: seo-search-foundations-2026-11
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build accurate public category pages and sitemap
+        run: python scripts/build_seo.py
+      - name: Commit refreshed pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add genres/ robots.txt sitemap.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh category pages and sitemap to include MADHOUSE Originals"
+            git push origin HEAD:seo-search-foundations-2026-11
+          fi
