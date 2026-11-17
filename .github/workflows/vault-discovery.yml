@@ -11,7 +11,7 @@ on:
     - cron: '23 21 * * 0'
   workflow_dispatch:
   issues:
-    types: [edited]
+    types: [edited, opened]
 permissions:
   contents: read
 concurrency:
@@ -32,7 +32,11 @@ jobs:
       - name: Test safe staging and deduplication
         run: python -m unittest discover -s scripts -p 'test_vault_discovery.py' -v
   discover:
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    if: >-
+      github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'issues' && github.event.action == 'opened' &&
+       github.actor == github.repository_owner &&
+       github.event.issue.title == 'MADHOUSE: Run discovery now')
     runs-on: ubuntu-latest
     timeout-minutes: 18
     permissions:
