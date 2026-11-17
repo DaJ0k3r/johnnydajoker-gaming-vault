@@ -40,6 +40,15 @@ class VaultSmokeTests(unittest.TestCase):
             self.assertIn("<h3>" + __import__("html").escape(game["title"], quote=True) + "</h3>", first_paint)
 
 
+    def test_social_counts_track_catalogue(self):
+        # Avoid advertising stale totals when the catalogue grows.
+        expected = str(len(GAMES))
+        for prefix in ('<meta name="description" content="',
+                       '<meta property="og:description" content="'):
+            match = re.search(re.escape(prefix) + r'([^"]+)"', HTML)
+            self.assertIsNotNone(match, prefix)
+            self.assertIn(expected, match.group(1), f"Stale social count: {prefix}")
+
     def test_existing_features_and_storage_keys(self):
         parsed = Tags()
         parsed.feed(HTML)
