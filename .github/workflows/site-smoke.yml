@@ -2,7 +2,7 @@ name: MADHOUSE Source Smoke Tests
 on:
   push:
     branches:
-      - phase-1-hygiene-trust
+      - phase-1-rebased-2026-11
   pull_request:
     branches:
       - main
