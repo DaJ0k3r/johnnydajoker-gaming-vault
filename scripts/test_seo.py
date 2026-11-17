@@ -42,12 +42,26 @@ class SEOTests(unittest.TestCase):
             self.assertEqual(page.count('<article class="card">'), len(checked))
             self.assertIn("A successful destination check does not guarantee full gameplay", page)
             for game in checked:
-                self.assertIn(escape(game["url"], quote=True), page)
+                target = game["url"]
+                if target.startswith("games/") and "madhouse-original" in game.get("tags", []):
+                    target = BASE + "/" + target.rstrip("/") + "/"
+                self.assertIn(escape(target, quote=True), page)
             for game in games:
                 if game.get("category") != name or game.get("status") == "verified":
                     continue
                 if game["url"] not in {c["url"] for c in checked}:
                     self.assertNotIn(f'href="{escape(game["url"], quote=True)}"', page)
+
+    def test_original_in_vault_games_are_indexable(self):
+        root = ET.parse(ROOT / "sitemap.xml").getroot()
+        ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+        locations = {x.text for x in root.findall("s:url/s:loc", ns)}
+        for title in ("neon-dodge", "nightshift-racer"):
+            url = f"{BASE}/games/{title}/"
+            self.assertIn(url, locations)
+            content = (ROOT / "games" / title / "index.html").read_text(encoding="utf-8")
+            self.assertIn(f'<link rel="canonical" href="{url}">', content)
+            self.assertIn('name="description"', content)
 
     def test_robots_references_sitemap_without_blocking_indexable_resources(self):
         robots = (ROOT / "robots.txt").read_text(encoding="utf-8")
