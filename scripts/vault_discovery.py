@@ -207,7 +207,7 @@ def inspect_http(url):
             try:
                 req = Request(url, headers={"User-Agent": "Mozilla/5.0 MADHOUSE-Vault-Audit"},
                               method="GET")
-                with urlopen(req, timeout=9) as response:
+                with HTTP_OPENER.open(req, timeout=9) as response:
                     return "http-" + str(response.status) if safe_url(response.url) else "redirect-review"
             except (HTTPError, URLError, TimeoutError) as inner:
                 return "http-" + str(inner.code) if isinstance(inner, HTTPError) else "network-uncertain"
