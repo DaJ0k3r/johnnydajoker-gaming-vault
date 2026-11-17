@@ -7,8 +7,8 @@ on:
     branches: [main]
     paths: ['scripts/vault_*.py', 'scripts/test_vault_discovery.py', 'scripts/test_vault_intake.py', '.github/workflows/vault-discovery.yml']
   schedule:
-    # Every Monday 07:23 Brisbane (Sunday 21:23 UTC).
-    - cron: '23 21 * * 0'
+    # Every day approximately 07:23 Brisbane (21:23 UTC previous calendar day).
+    - cron: '23 21 * * *'
   workflow_dispatch:
   issues:
     types: [opened]
@@ -57,7 +57,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Discover up to 48 unique projects and sample 40 existing links
+      - name: Daily: discover up to 48 unique projects and sample 40 existing links
         run: python scripts/vault_discovery.py scan
       - name: Install browser automation (use runner Chrome as fallback)
         continue-on-error: true
