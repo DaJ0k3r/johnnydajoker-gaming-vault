@@ -51,9 +51,29 @@ def check_site(page, url, mobile=False):
     assert page.locator("#lab-player-frame").get_attribute("src", timeout=3000).startswith("https://")
     page.locator("#lab-player-close").click()
     assert page.locator("#lab-player").evaluate("(el)=>el.hidden"), "Inline player did not close"
+    # Newly indexed category pages must really load and remain usable on phones.
+    assert page.locator('.vault-genre-nav a[href="./genres/racing/"]').count() == 1
+    page.locator('.vault-genre-nav a[href="./genres/racing/"]').click()
+    page.wait_for_url("**/genres/racing/", timeout=10000)
+    assert page.locator('.grid .card').count() >= 4
+    assert page.locator('link[rel="canonical"]').get_attribute("href") == "https://johnnydajoker.com/genres/racing/"
+    if mobile:
+        assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 4"), "Racing genre page overflows mobile viewport"
+    # The two MADHOUSE originals must load and their START actions respond.
+    for path in ("games/neon-dodge/", "games/nightshift-racer/"):
+        page.goto(url + path, wait_until="domcontentloaded", timeout=15000)
+        page.locator("canvas").wait_for(timeout=8000)
+        assert page.locator("canvas").evaluate("(c) => c.width > 0 && c.height > 0")
+        start = page.locator("#start")
+        start.wait_for(timeout=8000)
+        if mobile:
+            start.tap(timeout=8000)
+        else:
+            start.click(timeout=8000)
+        page.wait_for_timeout(250)
     assert not errors, "Browser JS errors: " + repr(errors[:3])
     print("PASS " + ("mobile" if mobile else "desktop") +
-          " catalogue/search/favourites/daily/roulette/shuffle/feed/player")
+          " catalogue/search/favourites/daily/roulette/shuffle/feed/player/genre/originals")
 
 def main():
     server = ThreadingHTTPServer(("127.0.0.1", 0), QuietFiles)
@@ -68,7 +88,9 @@ def main():
                 browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
             for mobile, size in ((False, {"width": 1366, "height": 768}),
                                  (True, {"width": 390, "height": 844})):
-                ctx = browser.new_context(viewport=size, service_workers="block")
+                ctx = browser.new_context(viewport=size, is_mobile=mobile,
+                                          has_touch=mobile, device_scale_factor=2 if mobile else 1,
+                                          service_workers="block")
                 page = ctx.new_page()
                 try:
                     check_site(page, url, mobile)
