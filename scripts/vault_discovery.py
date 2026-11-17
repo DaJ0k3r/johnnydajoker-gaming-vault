@@ -212,7 +212,7 @@ def render():
         title = short(item["title"], 75)
         desc = short(item.get("description"), 120)
         evidence = f"HTTP: {item.get('http', 'not-checked')}; browser: {item.get('browser', 'not-tested')}"
-        lines += [f"- [ ] QUEUE FOR TEST LAB \`{item['id']}\` — **{title}**",
+        lines += [f"- [ ] QUEUE FOR TEST LAB `{item['id']}` — **{title}**",
                   f"  - [Candidate launch]({item['url']}) · [GitHub source]({item['sourceUrl']}) · {evidence}",
                   f"  - {desc or 'No description supplied'}. Human gameplay, safety and rights review needed."]
     lines += ["", "## Existing game-link spot check", "",
@@ -220,7 +220,7 @@ def render():
     for g in audit:
         lines.append(f"- **{short(g['title'], 60)}** — {g['http']} ({g['catalogueStatus']})")
     lines += ["", "**After ticking:** GitHub prepares a review PR with newly approved entries in "
-              "\`data/discovery/candidates.json\`; they remain unverified until manually tested.",
+              "`data/discovery/candidates.json`; they remain unverified until manually tested.",
               "Issues edits by the repository owner trigger this step. No automatic public publishing.",
               "", "<!-- " + MARKER +
               base64.urlsafe_b64encode(json.dumps(p, separators=(",", ":")).encode()).decode() + " -->", ""]
