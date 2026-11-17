@@ -57,7 +57,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Daily: discover up to 48 unique projects and sample 40 existing links
+      - name: Daily discovery - up to 48 unique projects and 40 sampled links
         run: python scripts/vault_discovery.py scan
       - name: Install browser automation (use runner Chrome as fallback)
         continue-on-error: true
