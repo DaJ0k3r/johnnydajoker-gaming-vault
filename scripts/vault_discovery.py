@@ -96,6 +96,26 @@ def prior_proposal_ids():
         print(f"Prior issue lookup unavailable ({exc}); existing queue and catalogue still deduplicated")
     return ids
 
+def pending_week_candidates():
+    """Deduplicate today's scan against the week's unmerged automatic intake PR."""
+    repo = os.environ.get("GITHUB_REPOSITORY", "")
+    if not re.fullmatch(r"[\w.-]+/[\w.-]+", repo):
+        return []
+    now = dt.datetime.now(ZoneInfo("Australia/Brisbane")).isocalendar()
+    ref = f"vault-auto-{now.year}-W{now.week:02d}"
+    path = f"https://api.github.com/repos/{repo}/contents/data/discovery/candidates.json"
+    try:
+        payload = request_json(path + "?" + urlencode({"ref": ref}))
+        encoded = payload.get("content", "")
+        if not encoded:
+            return []
+        decoded = base64.b64decode(encoded).decode("utf-8")
+        entries = json.loads(decoded).get("entries", [])
+        return [g for g in entries if isinstance(g, dict)]
+    except (HTTPError, URLError, ValueError, KeyError, UnicodeDecodeError) as exc:
+        print(f"No pending weekly intake branch visible ({type(exc).__name__})")
+        return []
+
 def discover_repositories(known_urls, known_titles, prior_ids):
     """GitHub topic search: discovery evidence, never proof of gameplay or distribution rights."""
     proposed = []
@@ -177,11 +197,15 @@ def inspect_http(url):
 def run_scan():
     games = catalogue()
     queued = queue()["entries"]
-    known_urls = {normalize(g.get("url")) for g in games + queued
-                  if normalize(g.get("url"))}
-    known_urls.update(normalize(q.get("playUrl")) for q in queued if normalize(q.get("playUrl")))
-    known_titles = {normalized_title(g.get("title")) for g in games + queued}
+    pending = pending_week_candidates()
+    all_known = games + queued + pending
+    known_urls = {normalize(u) for g in all_known
+                  for u in (g.get("url"), g.get("playUrl"), g.get("sourceUrl"))
+                  if normalize(u)}
+    known_titles = {normalized_title(g.get("title")) for g in all_known}
     prior_ids = prior_proposal_ids()
+    prior_ids.update(str(g.get("id", "")).removeprefix("auto-")
+                     for g in pending if str(g.get("id", "")).startswith("auto-gh-"))
     proposals = discover_repositories(known_urls, known_titles, prior_ids)
     # Parallel bounded requests prevent a handful of timeouts from stalling the scan.
     with ThreadPoolExecutor(max_workers=8) as executor:
