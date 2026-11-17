@@ -59,7 +59,7 @@ class VaultSmokeTests(unittest.TestCase):
     def test_local_media_assets_and_social_metadata(self):
         # Catch missing root-level artwork before shipping a preview (including
         # the Underground 2 and Carbon banners that previously returned 404).
-        assets = set(re.findall(r'(?<![\\w/])(?:[\\w.-]+)\\.(?:png|jpe?g|webp|svg|ico|mp4)', HTML, re.I))
+        assets = set(re.findall(r"[A-Za-z0-9_.-]+[.](?:png|jpe?g|webp|svg|ico|mp4)", HTML, re.I))
         self.assertTrue(assets, "Expected local artwork references")
         for filename in sorted(assets):
             self.assertTrue((ROOT / filename).is_file(), f"Missing local asset: {filename}")
