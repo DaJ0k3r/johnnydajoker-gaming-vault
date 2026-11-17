@@ -72,7 +72,21 @@ class VaultSmokeTests(unittest.TestCase):
         assets = set(re.findall(r"[A-Za-z0-9_.-]+[.](?:png|jpe?g|webp|svg|ico|mp4)", HTML, re.I))
         self.assertTrue(assets, "Expected local artwork references")
         for filename in sorted(assets):
-            self.assertTrue((ROOT / filename).is_file(), f"Missing local asset: {filename}")
+            self.assertTrue((ROOT / filename).is_file() or
+                            (ROOT / "assets" / filename).is_file(),
+                            f"Missing local asset: {filename}")
+        artwork = {
+            "hero": "JohnnyDaJoker_YouTube_Banner_2560x1440.png",
+            "nfsu2": "file_000000007d00821198a25c70975fa763.png",
+            "carbon": "file_0000000034dc8211871698b8baa78445.png",
+        }
+        for label, original in artwork.items():
+            original_size = (ROOT / original).stat().st_size
+            for variant in ("desktop", "mobile"):
+                path = ROOT / "assets" / (label + "-" + variant + ".webp")
+                self.assertTrue(path.is_file(), f"Missing responsive art: {path}")
+                self.assertLess(path.stat().st_size, original_size)
+                self.assertIn("assets/" + label + "-" + variant + ".webp", HTML)
         self.assertIn('rel="icon"', HTML)
         self.assertIn('property="og:image"', HTML)
         self.assertIn('name="twitter:image"', HTML)
