@@ -10,10 +10,11 @@ from vault_discovery import REPORT, safe_url
 
 def main():
     data = json.loads(REPORT.read_text(encoding="utf-8"))
+    targets = data.get("proposals", [])[:6] + data.get("audit", [])[:4]
     try:
         from playwright.sync_api import sync_playwright, TimeoutError as BrowserTimeout
     except ImportError:
-        for item in data.get("proposals", []):
+        for item in targets:
             item["browser"] = "not-tested (Playwright not installed)"
         REPORT.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         return
@@ -32,7 +33,7 @@ def main():
                 REPORT.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
                 print("Chrome/Chromium unavailable; no game marked playable.")
                 return
-        for item in data.get("proposals", [])[:6]:
+        for item in targets:
             if not safe_url(item.get("url")):
                 item["browser"] = "unsafe-url"
                 continue
@@ -64,7 +65,7 @@ def main():
                 context.close()
         browser.close()
     REPORT.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print("Browser observations updated for", len(data.get("proposals", [])), "proposals")
+    print("Browser observations updated for", len(targets), "new/existing URLs")
 
 if __name__ == "__main__":
     main()
