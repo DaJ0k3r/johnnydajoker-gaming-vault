@@ -14,6 +14,7 @@ import ipaddress
 import json
 import os
 from pathlib import Path
+from zoneinfo import ZoneInfo
 import re
 import socket
 from urllib.error import HTTPError, URLError
@@ -170,7 +171,7 @@ def run_scan():
     for item in proposals:
         item["http"] = inspect_http(item["url"])
     # Rotate audits so this remains free/cheap and does not hammer 146 sites every run.
-    week = dt.date.today().isocalendar().week
+    week = dt.datetime.now(ZoneInfo('Australia/Brisbane')).isocalendar().week
     start = (week * MAX_AUDIT) % max(1, len(games))
     chosen = (games[start:] + games[:start])[:MAX_AUDIT]
     audit = [{"title": g.get("title"), "url": g.get("url"), "catalogueStatus": g.get("status"),
@@ -199,7 +200,7 @@ def render():
     report = json.loads(REPORT.read_text(encoding="utf-8"))
     p = report["proposals"]
     audit = report["audit"]
-    now = dt.date.today().isocalendar()
+    now = dt.datetime.now(ZoneInfo('Australia/Brisbane')).isocalendar()
     lines = [f"# MADHOUSE Discovery approvals — {now.year}-W{now.week:02d}", "",
              "**Your job:** tick the checkbox beside anything you want researched in the Test Lab. "
              "That queues an **UNVERIFIED candidate** into a protected pull request; it does **not** "
