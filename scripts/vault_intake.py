@@ -14,19 +14,34 @@ import vault_discovery as vd
 SUMMARY = vd.ROOT / "reports" / "vault-intake-summary.json"
 
 def classify_project(project):
-    """Conservative triage only, never a claim that browser gameplay works."""
+    """Conservative research triage: RESOURCE is not a playable game claim.
+
+    Resources are still queued for editorial discovery, but kept out of the
+    Test Lab until an individual direct-play game URL is identified.
+    """
     name = str(project.get("title", "")).lower().replace("_", "-")
     description = str(project.get("description", "")).lower()
     launch_url = str(project.get("url", "")).lower()
-    resource_titles = ("-plugin", "plugin-", "-compiler", "-framework", "games-hub",
-                       "game-hub", "gamedev", "100-games", "web-playables", "os.js")
+    resource_titles = ("-plugin", "plugin-", "-compiler", "-framework",
+                       "games-hub", "game-hub", "gamedev", "100-games",
+                       "web-playables", "os.js", "-sdk", "sdk-", "game-skill",
+                       "-mcp", "phasereditor", "github-leaderboard")
     resource_descriptions = ("game observability", "developer sdk", "game developer platform",
                              "game development tools", "game development news",
                              "software development kit", "emulator and", "x86 emulator",
-                             "compiles code", "framework for games", "library for game developers")
+                             "compiles code", "framework for games", "library for game developers",
+                             "game publishing", "game gallery", "browser arcade with",
+                             "games in one place", "open recipes", "printable games and worksheets",
+                             "online games and printable worksheets", "a collection of",
+                             "growing collection of", "collection of educational", "collection of printable",
+                             "games and worksheets", "browser micro-tools",
+                             "a web-based ide", "self-hosted arcade for", "portfolio: games",
+                             "portafolio: juegos", "browser game directories",
+                             "all-in-one game portal")
+    resource_paths = ("/developers", "/docs/", "compiler.", "/bounty/")
     if (any(token in name for token in resource_titles)
         or any(token in description for token in resource_descriptions)
-        or "/developers" in launch_url or "compiler." in launch_url):
+        or any(token in launch_url for token in resource_paths)):
         return "RESOURCE"
     return "GAME_CANDIDATE"
 
