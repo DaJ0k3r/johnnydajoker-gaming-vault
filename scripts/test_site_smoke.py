@@ -30,6 +30,7 @@ class VaultSmokeTests(unittest.TestCase):
     def test_first_paint_count_matches_catalogue(self):
         self.assertIn(f'<b id="total">{len(GAMES)}</b>', HTML)
         self.assertIn(f'<b id="visible">{sum(g["status"] == "verified" for g in GAMES)}</b>', HTML)
+        self.assertIn("<small>Shown by filters</small>", HTML)
         self.assertIn("<!-- BUILD:START FIRST CARDS -->", HTML)
         self.assertIn("<!-- BUILD:END FIRST CARDS -->", HTML)
         first_paint = HTML.split("<!-- BUILD:START FIRST CARDS -->", 1)[1].split("<!-- BUILD:END FIRST CARDS -->", 1)[0]
