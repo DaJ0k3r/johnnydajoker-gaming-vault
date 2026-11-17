@@ -1,6 +1,11 @@
 name: MADHOUSE Source Smoke Tests
 on:
+  push:
+    branches:
+      - phase-1-hygiene-trust
   pull_request:
+    branches:
+      - main
   workflow_dispatch:
 permissions:
   contents: read
