@@ -213,8 +213,8 @@ def run_scan():
     for item, result in zip(proposals, checks):
         item["http"] = result
     # Rotate audits so this remains free/cheap and does not hammer 146 sites every run.
-    week = dt.datetime.now(ZoneInfo('Australia/Brisbane')).isocalendar().week
-    start = (week * MAX_AUDIT) % max(1, len(games))
+    day = dt.datetime.now(ZoneInfo('Australia/Brisbane')).date()
+    start = (day.toordinal() * MAX_AUDIT) % max(1, len(games))
     chosen = (games[start:] + games[:start])[:MAX_AUDIT]
     with ThreadPoolExecutor(max_workers=8) as executor:
         audit_checks = list(executor.map(inspect_http, [g.get("url") for g in chosen]))
