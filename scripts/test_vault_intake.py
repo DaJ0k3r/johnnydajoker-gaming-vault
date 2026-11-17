@@ -88,6 +88,27 @@ class IntakeTests(unittest.TestCase):
         self.assertEqual(entries[0]["status"], "unverified")
         self.assertFalse(entries[0]["readyForPublicCatalogue"])
 
+    def test_recent_developer_tools_and_portals_not_misidentified_as_games(self):
+        samples = [
+            ("gamealia-mcp", "MCP server to publish web games; SDK, browser autotest", "https://gamealia.app/docs/publishing-with-ai"),
+            ("PhaserEditor2D-v3", "A web-based IDE for HTML5 game development", "https://phasereditor2d.com"),
+            ("krtuworks-sdk-js", "Krtuworks SDK for JavaScript", "https://partner.krtuworks.com/docs"),
+            ("github-leaderboard", "A visualisation of GitHub contributions", "https://example.org"),
+            ("little-explorers", "A publicly available collection of printable games and worksheets", "https://example.org"),
+            ("Playbox", "A growing collection of playful browser games", "https://example.org"),
+            ("makefun-best-game-01-r2", "An AI game contest submission", "https://make.fun/bounty/best-game-01"),
+        ]
+        for title,desc,url in samples:
+            with self.subTest(title=title):
+                self.assertEqual(intake.classify_project({"title":title,"description":desc,"url":url}),"RESOURCE")
+        for title,desc,url in [
+            ("hippo-heist","3D stealth heist in your browser","https://games.example.com"),
+            ("dmg-tetris","Playable Tetris game in browser","https://tetris.example.com"),
+            ("VibeWars","Browser PvP arena","https://wars.example.com"),
+        ]:
+            with self.subTest(title=title):
+                self.assertEqual(intake.classify_project({"title":title,"description":desc,"url":url}),"GAME_CANDIDATE")
+
     def test_same_source_repository_cannot_be_staged_twice(self):
         leads = [
             {"id": "gh-1", "title": "Game One", "url": "https://one.example/play",
