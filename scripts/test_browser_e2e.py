@@ -43,6 +43,18 @@ def check_site(page, url, mobile=False):
     page.locator("#lab-source-status").wait_for(timeout=12000)
     page.wait_for_function("document.querySelector('#lab-source-status').textContent.includes('loaded for testing')", timeout=12000)
     page.locator("#lab-list .lab-item").first.wait_for(timeout=12000)
+    # The largest discovery queue must be searchable and distinguish
+    # HTTP/browser observations from gameplay verification.
+    page.locator("#lab-sort").select_option("source")
+    page.locator("#lab-list .lab-item .lab-source").first.wait_for(timeout=8000)
+    assert page.locator("#lab-list .lab-item").first.locator(".lab-evidence").count() == 1, "Discovery evidence missing"
+    assert "not a playable-game test" in page.locator("#lab-list .lab-item").first.locator(".lab-evidence").inner_text().lower() or "not checked" in page.locator("#lab-list .lab-item").first.locator(".lab-evidence").inner_text().lower() or "not-tested" in page.locator("#lab-list .lab-item").first.locator(".lab-evidence").inner_text().lower()
+    page.locator("#lab-list .lab-item").first.locator("select").select_option("notgame")
+    assert page.evaluate("Object.values(JSON.parse(localStorage.getItem('jdj-testlab-v1')||'{}')).includes('notgame')"), "Review result was not saved"
+    page.locator("#lab-filter").select_option("notgame")
+    page.locator("#lab-list .lab-item").first.wait_for(timeout=8000)
+    page.locator("#lab-filter").select_option("pending")
+
     page.locator("#lab-search").fill("OpenLara")
     page.wait_for_timeout(200)
     page.locator("#lab-search").fill("")
