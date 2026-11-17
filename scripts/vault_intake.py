@@ -33,7 +33,8 @@ def classify_project(project):
                              "game publishing", "game gallery", "browser arcade with",
                              "games in one place", "open recipes", "printable games and worksheets",
                              "online games and printable worksheets", "a collection of",
-                             "growing collection of", "browser micro-tools",
+                             "growing collection of", "collection of educational", "collection of printable",
+                             "games and worksheets", "browser micro-tools",
                              "a web-based ide", "self-hosted arcade for", "portfolio: games",
                              "portafolio: juegos", "browser game directories",
                              "all-in-one game portal")
