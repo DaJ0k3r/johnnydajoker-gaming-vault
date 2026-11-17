@@ -1,0 +1,46 @@
+name: MADHOUSE Generate Favicon (temporary)
+on:
+  push:
+    branches: [favicon-small-all-pages-2026-11]
+    paths: ['.github/workflows/favicon-once.yml']
+permissions:
+  contents: write
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: favicon-small-all-pages-2026-11
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image encoder
+        run: python -m pip install 'Pillow>=11,<13'
+      - name: Create browser icon from original JohnnyDaJoker logo
+        run: |
+          python - <<'PY'
+          from PIL import Image,ImageOps
+          from pathlib import Path
+          with Image.open("JohnnyDaJoker.png") as source:
+              original=source.convert("RGBA")
+              icon=Image.new("RGBA",(128,128),(0,0,0,0))
+              art=ImageOps.contain(original,(128,128),Image.Resampling.LANCZOS)
+              icon.alpha_composite(art,((128-art.width)//2,(128-art.height)//2))
+              icon.save("JohnnyDaJoker_Favicon_128.png", optimize=True)
+              icon.save("favicon.ico",format="ICO",sizes=[(16,16),(32,32),(48,48),(64,64),(128,128)])
+          for name in ("JohnnyDaJoker_Favicon_128.png","favicon.ico"):
+              s=Path(name).stat().st_size
+              print(name,s,"bytes")
+              assert s < 80000
+          PY
+      - name: Commit generated favicon assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add JohnnyDaJoker_Favicon_128.png favicon.ico
+          if ! git diff --cached --quiet; then
+            git commit -m "Add small proper Joker browser favicon and ICO"
+            git push origin HEAD:favicon-small-all-pages-2026-11
+          fi
