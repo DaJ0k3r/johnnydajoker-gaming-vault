@@ -114,6 +114,23 @@ class VaultSmokeTests(unittest.TestCase):
         self.assertNotIn("url('JohnnyDaJoker.png')", HTML)
         self.assertIn("intro-art{background-image:url('JohnnyDaJoker_Hero_960.webp')", HTML)
 
+    def test_small_real_favicon_on_all_public_pages(self):
+        # The old 650KB logo is too large for a browser tab icon.
+        ico = ROOT / "favicon.ico"
+        preview = ROOT / "JohnnyDaJoker_Favicon_128.png"
+        self.assertTrue(ico.exists())
+        self.assertTrue(preview.exists())
+        self.assertLess(ico.stat().st_size, 80000)
+        self.assertLess(preview.stat().st_size, 80000)
+        self.assertIn('href="./favicon.ico"', HTML)
+        for path in ("about.html","privacy.html","contact.html","takedown.html"):
+            self.assertIn('href="./favicon.ico"', (ROOT/path).read_text(encoding="utf-8"))
+        for path in ("games/neon-dodge/index.html","games/nightshift-racer/index.html"):
+            self.assertIn('href="../../favicon.ico"', (ROOT/path).read_text(encoding="utf-8"))
+        # Preserves original source branding and matching social preview artwork.
+        self.assertTrue((ROOT/"JohnnyDaJoker.png").exists())
+        self.assertTrue((ROOT/"JohnnyDaJoker_YouTube_Banner_2560x1440.png").exists())
+
     def test_automatic_discovery_feed_in_test_lab(self):
         # Feed is read from the same origin, stays UNVERIFIED, and never
         # overwrites the user's existing Test Lab localStorage results.
