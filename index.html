@@ -239,19 +239,39 @@ document.querySelector('.arcade-quick')?.addEventListener('click',e=>{const b=e.
 </style>
 <section id="vault-testlab" aria-labelledby="testlab-title">
 <h2 id="testlab-title">THE TEST LAB // COMMUNITY CHECKS</h2>
-<p>Help us check the newest unverified listings. Open a game, test it, then mark your result. Your notes stay on this device until you copy them to send us.</p>
-<div class="lab-actions"><select id="lab-filter" aria-label="Test status"><option value="pending">Not tested by me</option><option value="all">All discovery candidates</option><option value="working">My working results</option><option value="failed">My failed results</option></select><button type="button" id="lab-copy">COPY TEST RESULTS</button><span id="lab-count" aria-live="polite"></span></div>
-<div id="lab-list" class="lab-list"></div>
+<p>Help test the newest unverified catalogue games and automatically discovered leads. Open the candidate page, check whether a real game launches, then mark your result. Your notes stay on this device until you copy them.</p>
+<div class="lab-actions"><input type="search" id="lab-search" aria-label="Search Test Lab candidates" placeholder="Search all discovery games..." style="min-width:220px;flex:1;background:#0b1a10;color:#eaffea;border:1px solid #54845b;border-radius:10px;padding:10px 13px"><select id="lab-filter" aria-label="Test status"><option value="pending">Not tested by me</option><option value="all">All discovery candidates</option><option value="working">My working results</option><option value="failed">My failed results</option></select><button type="button" id="lab-copy">COPY TEST RESULTS</button><span id="lab-count" aria-live="polite"></span></div>
+<p id="lab-source-status" aria-live="polite">Loading the MADHOUSE discovery queue…</p><div id="lab-list" class="lab-list"></div>
 </section>
 <script>
 (()=>{const root=document.getElementById('vault-testlab');if(!root)return;
-const catalog=(window.VAULT_CATALOG||[]).filter(g=>g.status==='unverified'&&g.type==='GAME');
+let catalog=(window.VAULT_CATALOG||[]).filter(g=>g.status==='unverified'&&g.type==='GAME').map(g=>({...g,fromDiscovery:false}));
 const storageKey='jdj-testlab-v1';let results={};try{results=JSON.parse(localStorage.getItem(storageKey)||'{}')||{}}catch{}
-const list=document.getElementById('lab-list'),filter=document.getElementById('lab-filter');
-function draw(){const f=filter.value;const selected=catalog.filter(g=>f==='all'||(f==='pending'?!results[g.id]:results[g.id]===f));document.getElementById('lab-count').textContent=selected.length+' games';list.replaceChildren();selected.forEach(g=>{const item=document.createElement('div');item.className='lab-item';const left=document.createElement('div');const a=document.createElement('a');a.textContent=g.title;a.href=g.url;a.target='_blank';a.rel='noopener noreferrer';left.append(a);const small=document.createElement('small');small.textContent=g.category+' · Unverified · opens original destination';left.append(small);const select=document.createElement('select');select.setAttribute('aria-label','Test result for '+g.title);[['','Not tested'],['working','Working'],['failed','Not working'],['files','Needs game files'],['account','Needs account']].forEach(([v,t])=>{const opt=document.createElement('option');opt.value=v;opt.textContent=t;select.append(opt)});select.value=results[g.id]||'';select.addEventListener('change',()=>{if(select.value)results[g.id]=select.value;else delete results[g.id];try{localStorage.setItem(storageKey,JSON.stringify(results))}catch{}draw()});item.append(left,select);list.append(item)});if(!selected.length)list.textContent='No games in this filter.'}
-filter.addEventListener('change',draw);
+const list=document.getElementById('lab-list'),filter=document.getElementById('lab-filter'),search=document.getElementById('lab-search'),status=document.getElementById('lab-source-status');let limit=80;
+const urlKey=u=>{try{const v=new URL(u);return v.hostname.replace(/^www\./,'').toLowerCase()+v.pathname.replace(/\/+$/,'').toLowerCase()}catch{return ''}};
+function draw(){const f=filter.value,q=search.value.trim().toLowerCase();
+const selected=catalog.filter(g=>(f==='all'||(f==='pending'?!results[g.id]:results[g.id]===f))&&(!q||g.title.toLowerCase().includes(q)||String(g.category).toLowerCase().includes(q)));
+document.getElementById('lab-count').textContent=selected.length+' results · '+Math.min(limit,selected.length)+' shown';
+list.replaceChildren();selected.slice(0,limit).forEach(g=>{
+const item=document.createElement('div');item.className='lab-item';const left=document.createElement('div');const a=document.createElement('a');a.textContent=g.title;a.href=g.url;a.target='_blank';a.rel='noopener noreferrer';left.append(a);
+const small=document.createElement('small');small.textContent=g.fromDiscovery?'AUTO DISCOVERY · Unverified candidate page · check actual launch and rights':g.category+' · Unverified catalogue game · opens original destination';left.append(small);
+const select=document.createElement('select');select.setAttribute('aria-label','Test result for '+g.title);
+[['','Not tested'],['working','Working'],['failed','Not working'],['files','Needs game files'],['account','Needs account']].forEach(([v,t])=>{const opt=document.createElement('option');opt.value=v;opt.textContent=t;select.append(opt)});
+select.value=results[g.id]||'';select.addEventListener('change',()=>{if(select.value)results[g.id]=select.value;else delete results[g.id];try{localStorage.setItem(storageKey,JSON.stringify(results))}catch{}draw()});item.append(left,select);list.append(item)});
+if(selected.length>limit){const more=document.createElement('button');more.type='button';more.textContent='SHOW 80 MORE';more.addEventListener('click',()=>{limit+=80;draw()});list.append(more)}
+if(!selected.length)list.textContent='No games in this filter.'}
+filter.addEventListener('change',()=>{limit=80;draw()});search.addEventListener('input',()=>{limit=80;draw()});
 document.getElementById('lab-copy').addEventListener('click',async()=>{const lines=catalog.filter(g=>results[g.id]).map(g=>g.title+' — '+results[g.id]+' — '+g.url);const message='MADHOUSE TEST LAB RESULTS\n'+(lines.join('\n')||'No tests recorded yet');try{await navigator.clipboard.writeText(message);alert('Test results copied. Paste them into our chat!')}catch{window.prompt('Copy your test results:',message)}});
-draw()})();
+draw();
+fetch('./data/discovery/candidates.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Discovery feed unavailable');return r.json()}).then(data=>{
+const entries=Array.isArray(data.entries)?data.entries:[],urls=new Set(catalog.map(g=>urlKey(g.url))),titles=new Set(catalog.map(g=>g.title.trim().toLowerCase()));let added=0;
+entries.forEach(g=>{const url=typeof g.playUrl==='string'?g.playUrl:'';let parsed;try{parsed=new URL(url)}catch{return}
+if(parsed.protocol!=='https:'||parsed.username||parsed.password||!parsed.hostname||!g.title||typeof g.title!=='string')return;
+const key=urlKey(url),title=g.title.trim().toLowerCase();if(!key||urls.has(key)||titles.has(title))return;
+urls.add(key);titles.add(title);
+catalog.push({id:String(g.id||'discovery-'+added),title:g.title.trim(),category:g.category||'Discovery',url,fromDiscovery:true});added++});
+status.textContent=added+' unique discovery leads loaded for testing · these are not verified games';draw()}).catch(()=>{status.textContent='Discovery feed unavailable; existing Test Lab catalogue still works.'})})();
+
 </script>
 <style>
 /* MADHOUSE 6.0 — community most-wanted requests */

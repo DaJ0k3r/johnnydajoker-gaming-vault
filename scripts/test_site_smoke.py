@@ -77,6 +77,17 @@ class VaultSmokeTests(unittest.TestCase):
         self.assertIn('property="og:image"', HTML)
         self.assertIn('name="twitter:image"', HTML)
 
+    def test_automatic_discovery_feed_in_test_lab(self):
+        # Feed is read from the same origin, stays UNVERIFIED, and never
+        # overwrites the user's existing Test Lab localStorage results.
+        self.assertIn("fetch('./data/discovery/candidates.json'", HTML)
+        self.assertIn("jdj-testlab-v1", HTML)
+        self.assertIn("id=\"lab-search\"", HTML)
+        self.assertIn("SHOW 80 MORE", HTML)
+        self.assertIn("these are not verified games", HTML)
+        feed = json.loads((ROOT / "data" / "discovery" / "candidates.json").read_text(encoding="utf-8"))
+        self.assertIsInstance(feed.get("entries"), list)
+
     def test_admin_and_intro(self):
         admin = (ROOT / "admin.html").read_text(encoding="utf-8")
         self.assertIn("noindex,nofollow", admin)
