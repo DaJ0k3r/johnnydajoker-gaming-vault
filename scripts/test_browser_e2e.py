@@ -45,6 +45,12 @@ def check_site(page, url, mobile=False):
     page.locator("#lab-source-status").wait_for(timeout=12000)
     page.wait_for_function("document.querySelector('#lab-source-status').textContent.includes('loaded for testing')", timeout=12000)
     page.locator("#lab-list .lab-item").first.wait_for(timeout=12000)
+    # Already published research records must never appear as unverified leads.
+    assert "previously reviewed items excluded" in page.locator("#lab-source-status").inner_text()
+    page.locator("#lab-search").fill("Road Rash (1996) browser remake")
+    assert page.locator("#lab-list .lab-item").count() == 0, "Published game leaked into unverified Test Lab"
+    page.locator("#lab-search").fill("")
+
     # The largest discovery queue must be searchable and distinguish
     # HTTP/browser observations from gameplay verification.
     page.locator("#lab-sort").select_option("source")

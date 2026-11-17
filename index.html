@@ -298,12 +298,12 @@ document.getElementById('lab-copy').addEventListener('click',async()=>{const lin
 draw();
 fetch('./data/discovery/candidates.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Discovery feed unavailable');return r.json()}).then(data=>{
 const entries=Array.isArray(data.entries)?data.entries:[],urls=new Set(catalog.map(g=>urlKey(g.url))),titles=new Set(catalog.map(g=>g.title.trim().toLowerCase()));let added=0;
-let excludedResources=0;entries.forEach(g=>{if(g.entryType==='RESOURCE'){excludedResources++;return}const url=typeof g.playUrl==='string'?g.playUrl:'';let parsed;try{parsed=new URL(url)}catch{return}
+let excludedResources=0,excludedReviewed=0;entries.forEach(g=>{if(g.entryType==='RESOURCE'){excludedResources++;return}if(g.status!=='unverified'||g.readyForPublicCatalogue===true){excludedReviewed++;return}const url=typeof g.playUrl==='string'?g.playUrl:'';let parsed;try{parsed=new URL(url)}catch{return}
 if(parsed.protocol!=='https:'||parsed.username||parsed.password||!parsed.hostname||!g.title||typeof g.title!=='string')return;
 const key=urlKey(url),title=g.title.trim().toLowerCase();if(!key||urls.has(key)||titles.has(title))return;
 urls.add(key);titles.add(title);
 catalog.push({id:String(g.id||'discovery-'+added),title:g.title.trim(),category:g.category||'Discovery',url,fromDiscovery:true,sourceUrl:(typeof g.sourceUrl==='string'&&g.sourceUrl.startsWith('https://github.com/'))?g.sourceUrl:'',sourceDescription:String(g.sourceDescription||'').slice(0,180),reviewPriority:g.reviewPriority||'needs-inspection',httpEvidence:g.automationEvidence?.http||'not-checked',browserEvidence:g.automationEvidence?.browser||'not-tested'});added++});
-status.textContent=added+' unverified game leads loaded for testing · '+excludedResources+' development resources excluded from game tests';draw()}).catch(()=>{status.textContent='Discovery feed unavailable; existing Test Lab catalogue still works.'})})();
+status.textContent=added+' unverified game leads loaded for testing · '+excludedResources+' resources and '+excludedReviewed+' previously reviewed items excluded';draw()}).catch(()=>{status.textContent='Discovery feed unavailable; existing Test Lab catalogue still works.'})})();
 
 </script>
 <style>
