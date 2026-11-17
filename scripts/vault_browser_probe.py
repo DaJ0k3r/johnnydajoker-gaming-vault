@@ -6,7 +6,7 @@ surface. Captchas, login walls and canvas decorations are not proof of playabili
 """
 import json
 import time
-from vault_discovery import REPORT, safe_url
+from vault_discovery import REPORT, safe_url, public_dns
 
 def main():
     data = json.loads(REPORT.read_text(encoding="utf-8"))
@@ -39,6 +39,14 @@ def main():
                 continue
             context = browser.new_context(ignore_https_errors=False, service_workers="block",
                                           viewport={"width": 1280, "height": 720})
+            # Prevent headless browser navigations to private services or metadata.
+            def guard_navigation(route):
+                request = route.request
+                if request.is_navigation_request() and (not safe_url(request.url) or not public_dns(request.url)):
+                    route.abort()
+                else:
+                    route.continue_()
+            context.route("**/*", guard_navigation)
             page = context.new_page()
             try:
                 response = page.goto(item["url"], wait_until="domcontentloaded", timeout=12000)
