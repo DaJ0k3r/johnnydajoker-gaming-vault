@@ -32,6 +32,12 @@ class VaultSmokeTests(unittest.TestCase):
         self.assertIn(f'<b id="visible">{sum(g["status"] == "verified" for g in GAMES)}</b>', HTML)
         self.assertIn("<!-- BUILD:START FIRST CARDS -->", HTML)
         self.assertIn("<!-- BUILD:END FIRST CARDS -->", HTML)
+        first_paint = HTML.split("<!-- BUILD:START FIRST CARDS -->", 1)[1].split("<!-- BUILD:END FIRST CARDS -->", 1)[0]
+        expected = sorted((g for g in GAMES if g["status"] == "verified"), key=lambda g: g["title"].casefold())[:6]
+        self.assertEqual(first_paint.count('<article class="card"'), len(expected))
+        for game in expected:
+            self.assertIn("<h3>" + __import__("html").escape(game["title"], quote=True) + "</h3>", first_paint)
+
 
     def test_existing_features_and_storage_keys(self):
         parsed = Tags()
