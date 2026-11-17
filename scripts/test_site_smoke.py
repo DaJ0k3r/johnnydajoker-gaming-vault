@@ -77,6 +77,25 @@ class VaultSmokeTests(unittest.TestCase):
         self.assertIn('property="og:image"', HTML)
         self.assertIn('name="twitter:image"', HTML)
 
+    def test_responsive_art_keeps_source_branding_and_reduces_image_weight(self):
+        # Original full-resolution art is retained for social previews and
+        # downloads; CSS uses small WebP variants on desktop and mobile.
+        source = "JohnnyDaJoker_YouTube_Banner_2560x1440.png"
+        self.assertIn(f'<meta property="og:image" content="https://johnnydajoker.com/{source}">', HTML)
+        self.assertNotIn("url('" + source + "')", HTML)
+        names = ("JohnnyDaJoker_Hero", "NFS_Underground2", "NFS_Carbon")
+        for name in names:
+            for size in (1600, 960):
+                path = ROOT / f"{name}_{size}.webp"
+                self.assertTrue(path.exists(), f"Missing responsive image {path.name}")
+                self.assertLess(path.stat().st_size, 500000, f"Unusually large image: {path.name}")
+                self.assertIn(path.name, HTML)
+        self.assertIn('media="(max-width: 600px)"', HTML)
+        self.assertIn('type="image/webp"', HTML)
+        for old in ("file_000000007d00821198a25c70975fa763.png",
+                    "file_0000000034dc8211871698b8baa78445.png"):
+            self.assertNotIn("url('" + old + "')", HTML)
+
     def test_automatic_discovery_feed_in_test_lab(self):
         # Feed is read from the same origin, stays UNVERIFIED, and never
         # overwrites the user's existing Test Lab localStorage results.
