@@ -217,36 +217,61 @@ def extract_payload(body):
     return [x for x in data if isinstance(x, dict)]
 
 def render():
+    """A single weekly BATCH review, never one approval per game."""
     report = json.loads(REPORT.read_text(encoding="utf-8"))
     p = report["proposals"]
     audit = report["audit"]
-    now = dt.datetime.now(ZoneInfo('Australia/Brisbane')).isocalendar()
+    intake_path = ROOT / "reports" / "vault-intake-summary.json"
+    intake = json.loads(intake_path.read_text(encoding="utf-8")) if intake_path.exists() else {}
+    counts = intake.get("counts", {})
+    now = dt.datetime.now(ZoneInfo("Australia/Brisbane")).isocalendar()
+    batch_url = os.environ.get("STAGING_PR_URL", "")
+    compare = os.environ.get("STAGING_COMPARE_URL", "")
     lines = [f"# MADHOUSE Discovery approvals — {now.year}-W{now.week:02d}", "",
-             "**Your job:** tick the checkbox beside anything you want researched in the Test Lab. "
-             "That queues an **UNVERIFIED candidate** into a protected pull request; it does **not** "
-             "publish the game or claim gameplay-tested status.", "",
-             "## New game leads (automatic suggestions)", ""]
+             "**NEW DEFAULT: ALL ELIGIBLE NEW GAME LEADS ARE AUTOMATICALLY QUEUED.** "
+             "You do not need to tick games one by one. This is a batch review only.", "",
+             f"**Found:** {len(p)} new leads; "
+             f"**newly queued:** {counts.get('autoQueued', 'pending')}; "
+             f"**browser-render candidates:** {counts.get('renderCandidate', 'pending')}; "
+             f"**need further inspection:** {counts.get('needsInspection', 'pending')}; "
+             f"**existing links sampled:** {len(audit)}.", "",
+             "## Your one approval for the batch", "",
+             "Review the staged changes and **merge the staging PR** when happy. "
+             "This only accepts leads into the UNVERIFIED discovery queue; it does "
+             "**not** publish games. If any entries look unsuitable, flag them in "
+             "the PR comments so they can be excluded.", ""]
+    if batch_url:
+        lines.append(f"**[Open automatic discovery batch]({batch_url})**")
+    elif compare:
+        lines.append(f"**[Open proposed discovery branch]({compare})**")
+        lines.append("GitHub Actions could not open a PR automatically. "
+                     "The branch was pushed and can be converted to a PR.")
+    else:
+        lines.append("No staging PR link was available; see the discovery workflow logs.")
+    lines += ["", "## New game leads — automatically considered, not gameplay-verified", ""]
     if not p:
-        lines.append("No fresh, non-duplicate leads found in this scan.")
+        lines.append("No fresh unique projects found. The next scheduled scan will try again.")
     for item in p:
-        title = short(item["title"], 75)
-        desc = short(item.get("description"), 120)
-        evidence = f"HTTP: {item.get('http', 'not-checked')}; browser: {item.get('browser', 'not-tested')}"
-        lines += [f"- [ ] QUEUE FOR TEST LAB `{item['id']}` — **{title}**",
-                  f"  - [Candidate launch]({item['url']}) · [GitHub source]({item['sourceUrl']}) · {evidence}",
-                  f"  - {desc or 'No description supplied'}. Human gameplay, safety and rights review needed."]
-    lines += ["", "## Existing game-link spot check", "",
-              "These checks only tell us whether automated requests succeeded; they cannot prove games launch.", ""]
+        title = short(item.get("title"), 75)
+        desc = short(item.get("description"), 100)
+        observation = f"HTTP {item.get('http', 'not-checked')}; browser {item.get('browser', 'not-tested')}"
+        lines += [f"- **{title}** — [candidate page]({item['url']}) · "
+                  f"[project source]({item['sourceUrl']}) · {observation}",
+                  f"  - {desc or 'No description supplied'}. Actual game start, rights and embedding remain unverified."]
+    lines += ["", "## Existing-link health sampling", "",
+              "A URL response or canvas is never evidence of a full playthrough.", ""]
     for g in audit:
-        lines.append(f"- **{short(g['title'], 60)}** — HTTP: {g['http']}; browser: {g.get('browser', 'not-sampled')} ({g['catalogueStatus']})")
-    lines += ["", "**After ticking:** GitHub prepares a review PR with newly approved entries in "
-              "`data/discovery/candidates.json`; they remain unverified until manually tested.",
-              "Issues edits by the repository owner trigger this step. No automatic public publishing.",
+        lines.append(f"- **{short(g['title'], 60)}** — HTTP {g['http']}; "
+                     f"browser {g.get('browser', 'not-sampled')} ({g['catalogueStatus']})")
+    lines += ["", "## What happens next", "",
+              "Automatic discovery -> safe deduplication -> UNVERIFIED staging PR -> "
+              "one batch merge -> Test Lab / real gameplay checks -> separate publication decision. "
+              "No copyright files are hosted. No automatic 'verified' status.",
               "", "<!-- " + MARKER +
               base64.urlsafe_b64encode(json.dumps(p, separators=(",", ":")).encode()).decode() + " -->", ""]
     ISSUE_MD.parent.mkdir(parents=True, exist_ok=True)
     ISSUE_MD.write_text("\n".join(lines), encoding="utf-8")
-    print("Checklist written:", ISSUE_MD)
+    print("Batch review written:", ISSUE_MD)
 
 def approve(body_file):
     body = Path(body_file).read_text(encoding="utf-8")
