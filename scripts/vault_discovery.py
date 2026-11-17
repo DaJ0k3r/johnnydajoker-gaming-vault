@@ -9,6 +9,7 @@ Usage:
 import argparse
 import base64
 import datetime as dt
+from concurrent.futures import ThreadPoolExecutor
 import html
 import ipaddress
 import json
@@ -27,8 +28,8 @@ ISSUE_MD = ROOT / "reports" / "vault-approvals.md"
 QUEUE = ROOT / "data" / "discovery" / "candidates.json"
 CATALOG = ROOT / "data" / "catalog.js"
 MARKER = "VAULT_DISCOVERY_PAYLOAD:"
-MAX_PROPOSALS = 6
-MAX_AUDIT = 12
+MAX_PROPOSALS = 48
+MAX_AUDIT = 40
 
 def catalogue():
     text = CATALOG.read_text(encoding="utf-8")
@@ -99,15 +100,29 @@ def discover_repositories(known_urls, known_titles, prior_ids):
     """GitHub topic search: discovery evidence, never proof of gameplay or distribution rights."""
     proposed = []
     seen = set()
-    for query in ("topic:browser-game stars:>10 archived:false",
-                  "topic:html5-game stars:>10 archived:false"):
-        args = urlencode({"q": query, "sort": "updated", "order": "desc", "per_page": 35})
+    search_modes = (
+        ("topic:browser-game archived:false", "updated"),
+        ("topic:html5-game archived:false", "updated"),
+        ("topic:browser-games archived:false", "updated"),
+        ("topic:web-games archived:false", "updated"),
+        ("topic:browser-game stars:>15 archived:false", "stars"),
+        ("topic:html5-games archived:false", "updated"),
+    )
+    batches = []
+    for query, sort in search_modes:
+        args = urlencode({"q": query, "sort": sort, "order": "desc", "per_page": 70})
         try:
             found = request_json("https://api.github.com/search/repositories?" + args).get("items", [])
         except (HTTPError, URLError, ValueError) as exc:
             print(f"GitHub discovery search unavailable ({exc})")
             continue
-        for item in found:
+        batches.append(found)
+    # Round-robin sources so a large topic doesn't monopolise the entire weekly intake.
+    for batch_index in range(max((len(batch) for batch in batches), default=0)):
+        for batch in batches:
+            if batch_index >= len(batch):
+                continue
+            item = batch[batch_index]
             repo_id = "gh-" + str(item.get("id", ""))
             title = short(item.get("name", ""), 75)
             homepage = str(item.get("homepage") or "").strip().rstrip("/")
@@ -168,20 +183,25 @@ def run_scan():
     known_titles = {normalized_title(g.get("title")) for g in games + queued}
     prior_ids = prior_proposal_ids()
     proposals = discover_repositories(known_urls, known_titles, prior_ids)
-    for item in proposals:
-        item["http"] = inspect_http(item["url"])
+    # Parallel bounded requests prevent a handful of timeouts from stalling the scan.
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        checks = list(executor.map(inspect_http, [g["url"] for g in proposals]))
+    for item, result in zip(proposals, checks):
+        item["http"] = result
     # Rotate audits so this remains free/cheap and does not hammer 146 sites every run.
     week = dt.datetime.now(ZoneInfo('Australia/Brisbane')).isocalendar().week
     start = (week * MAX_AUDIT) % max(1, len(games))
     chosen = (games[start:] + games[:start])[:MAX_AUDIT]
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        audit_checks = list(executor.map(inspect_http, [g.get("url") for g in chosen]))
     audit = [{"title": g.get("title"), "url": g.get("url"), "catalogueStatus": g.get("status"),
-              "http": inspect_http(g.get("url"))} for g in chosen]
+              "http": result} for g, result in zip(chosen, audit_checks)]
     result = {"generated": dt.datetime.now(dt.timezone.utc).isoformat(), "proposals": proposals,
               "audit": audit, "catalogueCount": len(games),
               "queueCount": len(queued), "note": "HTTP status is not evidence of playable gameplay."}
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     REPORT.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(f"Discovered {len(proposals)} new GitHub candidates; audited {len(audit)} existing URLs.")
+    print(f"Discovered {len(proposals)} new GitHub candidates; audited {len(audit)} existing URLs. All remain unverified.")
     render()
 
 def extract_payload(body):
