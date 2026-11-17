@@ -19,7 +19,14 @@ def main():
         return
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
+        try:
+            browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
+        except Exception as exc:
+            for item in data.get("proposals", []):
+                item["browser"] = "browser-unavailable (" + type(exc).__name__ + ")"
+            REPORT.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+            print("Chromium unavailable; no game marked playable.")
+            return
         for item in data.get("proposals", [])[:6]:
             if not safe_url(item.get("url")):
                 item["browser"] = "unsafe-url"
