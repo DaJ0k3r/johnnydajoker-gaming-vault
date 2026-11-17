@@ -1,0 +1,74 @@
+name: MADHOUSE Weekly Performance Snapshot
+
+on:
+  push:
+    branches: [weekly-performance-audit-2026-11]
+    paths: ['.github/workflows/weekly-performance.yml']
+  schedule:
+    # Monday 08:35 Brisbane = Sunday 22:35 UTC
+    - cron: '35 22 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Lighthouse CLI
+        run: npm install -g lighthouse@13.6.0
+      - name: Start local MADHOUSE web server
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 >/tmp/madhouse-local.log 2>&1 &
+          for n in 1 2 3 4 5 6 7 8; do
+            if curl --fail --silent http://127.0.0.1:8765/ >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent --head http://127.0.0.1:8765/genres/racing/ >/dev/null
+      - name: Audit homepage (desktop)
+        run: |
+          mkdir -p reports
+          lighthouse http://127.0.0.1:8765/             --quiet --chrome-flags="--headless --no-sandbox --disable-gpu"             --only-categories=performance,accessibility,best-practices,seo             --preset=desktop --output=json --output-path=reports/home-desktop.json
+      - name: Audit homepage (mobile)
+        run: |
+          lighthouse http://127.0.0.1:8765/             --quiet --chrome-flags="--headless --no-sandbox --disable-gpu"             --only-categories=performance,accessibility,best-practices,seo             --output=json --output-path=reports/home-mobile.json
+      - name: Audit racing category (mobile)
+        run: |
+          lighthouse http://127.0.0.1:8765/genres/racing/             --quiet --chrome-flags="--headless --no-sandbox --disable-gpu"             --only-categories=performance,accessibility,best-practices,seo             --output=json --output-path=reports/racing-mobile.json
+      - name: Summarise scores and core web vitals lab estimates
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          lines = ["# MADHOUSE Weekly Lighthouse snapshot", "",
+                   "CI lab metrics from GitHub runner/local server; NOT real-user field metrics.",
+                   "Scores are not performance guarantees and can vary across runs.", "",
+                   "| Page | Perf | A11y | Best practices | SEO | LCP (s) | CLS |",
+                   "| --- | ---: | ---: | ---: | ---: | ---: | ---: |"]
+          for path in sorted(Path("reports").glob("*.json")):
+              data = json.loads(path.read_text())
+              scores = [round(100 * data["categories"][key]["score"])
+                        for key in ("performance","accessibility","best-practices","seo")]
+              audits = data.get("audits", {})
+              lcp = (audits.get("largest-contentful-paint", {}).get("numericValue") or 0)/1000
+              cls = audits.get("cumulative-layout-shift", {}).get("numericValue") or 0
+              lines.append(f"| {path.stem} | {scores[0]} | {scores[1]} | {scores[2]} | {scores[3]} | {lcp:.2f} | {cls:.3f} |")
+          lines += ["", "Prioritise actual user problems over single-run scores."]
+          Path("reports/summary.md").write_text("\n".join(lines)+"\n")
+          print("\n".join(lines))
+          PY
+      - name: Upload reports for review (30 days)
+        uses: actions/upload-artifact@v4
+        with:
+          name: madhouse-lighthouse-lab-reports
+          path: reports/
+          retention-days: 30
