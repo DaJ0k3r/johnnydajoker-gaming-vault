@@ -10,7 +10,7 @@ from vault_discovery import REPORT, safe_url
 
 def main():
     data = json.loads(REPORT.read_text(encoding="utf-8"))
-    targets = data.get("proposals", [])[:6] + data.get("audit", [])[:4]
+    targets = data.get("proposals", [])[:24] + data.get("audit", [])[:6]
     try:
         from playwright.sync_api import sync_playwright, TimeoutError as BrowserTimeout
     except ImportError:
@@ -41,8 +41,8 @@ def main():
                                           viewport={"width": 1280, "height": 720})
             page = context.new_page()
             try:
-                response = page.goto(item["url"], wait_until="domcontentloaded", timeout=15000)
-                page.wait_for_timeout(1400)
+                response = page.goto(item["url"], wait_until="domcontentloaded", timeout=12000)
+                page.wait_for_timeout(850)
                 state = page.evaluate("""() => ({
                     canvas: document.querySelectorAll('canvas').length,
                     iframe: document.querySelectorAll('iframe').length,
