@@ -62,8 +62,8 @@ def check_site(page, url, mobile=False):
     # The two MADHOUSE originals must load and their START actions respond.
     for path in ("games/neon-dodge/", "games/nightshift-racer/"):
         page.goto(url + path, wait_until="domcontentloaded", timeout=15000)
-        page.locator("canvas").wait_for(timeout=8000)
-        assert page.locator("canvas").evaluate("(c) => c.width > 0 && c.height > 0")
+        page.locator("canvas#c").wait_for(timeout=8000)
+        assert page.locator("canvas#c").evaluate("(c) => c.width > 0 && c.height > 0")
         start = page.locator("#start")
         start.wait_for(timeout=8000)
         if mobile:
