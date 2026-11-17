@@ -1,22 +1,23 @@
-name: MADHOUSE Vault Discovery & Approvals
+name: MADHOUSE Universal Game Intake
 on:
   push:
-    branches: [main, vault-automation-v1]
-    paths: ['scripts/vault_*.py', 'scripts/test_vault_discovery.py', '.github/workflows/vault-discovery.yml']
+    branches: [main, vault-universal-intake-v2]
+    paths: ['scripts/vault_*.py', 'scripts/test_vault_discovery.py', 'scripts/test_vault_intake.py', '.github/workflows/vault-discovery.yml']
   pull_request:
     branches: [main]
-    paths: ['scripts/vault_*.py', 'scripts/test_vault_discovery.py', '.github/workflows/vault-discovery.yml']
+    paths: ['scripts/vault_*.py', 'scripts/test_vault_discovery.py', 'scripts/test_vault_intake.py', '.github/workflows/vault-discovery.yml']
   schedule:
-    # Monday 07:23 Brisbane (Sunday 21:23 UTC).
-    - cron: '23 21 * * 0'
+    # Every day approximately 07:23 Brisbane (21:23 UTC previous calendar day).
+    - cron: '23 21 * * *'
   workflow_dispatch:
   issues:
-    types: [edited, opened]
+    types: [opened]
 permissions:
   contents: read
 concurrency:
-  group: vault-discovery-${{ github.event_name }}-${{ github.ref }}
+  group: vault-intake-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: false
+
 jobs:
   unit-tests:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
@@ -27,10 +28,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Compile discovery tools
-        run: python -m py_compile scripts/vault_discovery.py scripts/vault_browser_probe.py
-      - name: Test safe staging and deduplication
-        run: python -m unittest discover -s scripts -p 'test_vault_discovery.py' -v
+      - name: Compile scan, intake and browser tools
+        run: python -m py_compile scripts/vault_discovery.py scripts/vault_browser_probe.py scripts/vault_intake.py
+      - name: Test deduplication and safe bulk intake
+        run: |
+          python -m unittest discover -s scripts -p 'test_vault_discovery.py' -v
+          python -m unittest discover -s scripts -p 'test_vault_intake.py' -v
+
   discover:
     if: >-
       github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' ||
@@ -38,69 +42,7 @@ jobs:
        github.actor == github.repository_owner &&
        github.event.issue.title == 'MADHOUSE: Run discovery now')
     runs-on: ubuntu-latest
-    timeout-minutes: 18
-    permissions:
-      contents: read
-      issues: write
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      GH_REPO: ${{ github.repository }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Discover non-duplicate projects and audit 12 existing links
-        run: python scripts/vault_discovery.py scan
-      - name: Install headless Chromium
-        continue-on-error: true
-        run: |
-          python -m pip install 'playwright==1.55.0'
-          python -m playwright install --with-deps chromium
-      - name: Observe actual browser rendering (not full gameplay)
-        run: python scripts/vault_browser_probe.py
-      - name: Write approval checklist with browser observations
-        run: python scripts/vault_discovery.py render
-      - name: Upload evidence and checklist for future review
-        uses: actions/upload-artifact@v4
-        with:
-          name: vault-discovery-evidence
-          path: reports/
-          retention-days: 30
-      - name: Open one approval issue per week; never auto-publish
-        env:
-          OWNER: ${{ github.repository_owner }}
-        run: |
-          title="$(head -n 1 reports/vault-approvals.md | sed 's/^# //')"
-          if gh issue list --state all --limit 100 --json title --jq '.[].title' | grep -Fqx "$title"; then
-            echo "Approval issue for this week already exists; leaving checked decisions untouched."
-          else
-            gh issue create --title "$title" --body-file reports/vault-approvals.md --assignee "$OWNER"
-          fi
-      - name: Record manual scan outcome on control issue
-        if: github.event_name == 'issues'
-        env:
-          TRIGGER_ISSUE: ${{ github.event.issue.number }}
-        run: |
-          python - <<'PY'
-          import json
-          d = json.load(open("reports/vault-discovery.json"))
-          x = ["MADHOUSE discovery run completed.", "",
-               f"New suggestions: {len(d['proposals'])}; existing links checked: {len(d['audit'])}.",
-               "", "**Browser observations (not playthrough verification):**"]
-          x.extend(f"- {q['title']}: {q.get('browser', 'not-tested')}" for q in d["proposals"])
-          x += ["", "Review this week's assigned MADHOUSE Discovery approvals issue for checkboxes."]
-          open("reports/scan-summary.md", "w").write("\n".join(x) + "\n")
-          PY
-          gh issue comment "$TRIGGER_ISSUE" --body-file reports/scan-summary.md
-          gh issue close "$TRIGGER_ISSUE" --reason completed
-  stage-approved-candidates:
-    if: >-
-      github.event_name == 'issues' &&
-      github.actor == github.repository_owner &&
-      startsWith(github.event.issue.title, 'MADHOUSE Discovery approvals')
-    runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 26
     permissions:
       contents: write
       pull-requests: write
@@ -108,7 +50,6 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GH_REPO: ${{ github.repository }}
-      ISSUE_NUMBER: ${{ github.event.issue.number }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -116,27 +57,84 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Process only owner-checked candidates
+      - name: Daily: discover up to 48 unique projects and sample 40 existing links
+        run: python scripts/vault_discovery.py scan
+      - name: Install browser automation (use runner Chrome as fallback)
+        continue-on-error: true
+        run: python -m pip install 'playwright==1.55.0'
+      - name: Observe candidate and catalogue pages in headless browser
+        run: python scripts/vault_browser_probe.py
+      - name: Automatically stage ALL safe nonduplicate new candidates in a single PR
+        env:
+          OWNER: ${{ github.repository_owner }}
         run: |
-          python -c 'import json,os; data=json.load(open(os.environ["GITHUB_EVENT_PATH"]));open("/tmp/vault-issue.md","w").write(data["issue"].get("body") or "")'
-          python scripts/vault_discovery.py approve --body-file /tmp/vault-issue.md
-      - name: Open safe staging PR (never changes public catalogue)
-        run: |
-          if git diff --quiet -- data/discovery/candidates.json; then
-            echo "No new approved candidates. Nothing to stage."
-            exit 0
-          fi
-          branch="vault-approved-issue-$ISSUE_NUMBER"
+          batch="$(TZ=Australia/Brisbane date +%G-W%V)"
+          branch="vault-auto-$batch"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -B "$branch"
-          git add data/discovery/candidates.json
-          git commit -m "Stage owner-approved MADHOUSE game leads from issue #$ISSUE_NUMBER"
-          git push --force-with-lease origin "HEAD:refs/heads/$branch"
-          if gh pr list --state open --head "$branch" --json number --jq '.[0].number // empty' | grep -q '[0-9]'; then
-            echo "Existing staging PR updated."
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+            git fetch origin "$branch"
+            git checkout -B "$branch" FETCH_HEAD
           else
-            gh pr create --base main --head "$branch" \
-              --title "Discovery: approved leads from issue #$ISSUE_NUMBER" \
-              --body "Owner-approved candidates only. All remain UNVERIFIED in data/discovery/candidates.json; gameplay, rights and direct launch still require testing. This PR does not publish games or change the public catalogue. Source: #$ISSUE_NUMBER."
+            git checkout -B "$branch"
           fi
+
+          python scripts/vault_intake.py
+          if ! git diff --quiet -- data/discovery/candidates.json; then
+            git add data/discovery/candidates.json
+            git commit -m "Auto-stage all MADHOUSE leads from $batch (unverified only)"
+            git push origin "HEAD:refs/heads/$branch"
+          fi
+          echo "STAGING_COMPARE_URL=https://github.com/$GH_REPO/compare/main...$branch?expand=1" >> "$GITHUB_ENV"
+          existing="$(gh pr list --state open --head "$branch" --json url --jq '.[0].url // ""')"
+          if [ -n "$existing" ]; then
+            echo "STAGING_PR_URL=$existing" >> "$GITHUB_ENV"
+          elif git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+            if pr="$(gh pr create --base main --head "$branch" \
+              --title "MADHOUSE $batch: automatic all-game discovery batch" \
+              --body "All nonduplicate leads have been staged as UNVERIFIED only. No gameplay was automatically verified. This PR changes only the discovery queue, not the public game catalogue. Review and merge the WHOLE batch once; comment on any exceptions." 2>&1)"; then
+              echo "STAGING_PR_URL=$pr" >> "$GITHUB_ENV"
+            else
+              echo "GitHub Actions could not create PR: $pr"
+              echo "$pr" > reports/pr-creation-error.txt
+            fi
+          fi
+      - name: Generate whole-batch review summary (no individual selections)
+        run: python scripts/vault_discovery.py render
+      - name: Upload complete discovery and browser evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: vault-discovery-evidence
+          path: reports/
+          retention-days: 30
+      - name: Notify owner with one batch review
+        env:
+          OWNER: ${{ github.repository_owner }}
+        run: |
+          title="$(head -n 1 reports/vault-approvals.md | sed 's/^# //')"
+          existing="$(gh issue list --state all --limit 100 --json number,title \
+            --jq ".[] | select(.title == \"$title\") | .number" | head -n 1)"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file reports/vault-approvals.md
+          else
+            gh issue create --title "$title" --body-file reports/vault-approvals.md --assignee "$OWNER"
+          fi
+      - name: Report outcome on manual run issue
+        if: github.event_name == 'issues'
+        env:
+          TRIGGER_ISSUE: ${{ github.event.issue.number }}
+        run: |
+          python - <<'PY'
+          import json
+          d = json.load(open("reports/vault-intake-summary.json"))
+          c = d["counts"]
+          lines = ["MADHOUSE automatic all-game intake completed.", "",
+                   f"Candidates found: {c['proposals']}; newly staged: {c['autoQueued']}; "
+                   f"possible browser launches: {c['renderCandidate']}; further review: {c['needsInspection']}.",
+                   "No game was marked verified or published.",
+                   "",
+                   "See the current weekly MADHOUSE Discovery approvals issue for the batch PR."]
+          open("reports/scan-summary.md", "w").write("\n".join(lines) + "\n")
+          PY
+          gh issue comment "$TRIGGER_ISSUE" --body-file reports/scan-summary.md
+          gh issue close "$TRIGGER_ISSUE" --reason completed

@@ -6,11 +6,11 @@ surface. Captchas, login walls and canvas decorations are not proof of playabili
 """
 import json
 import time
-from vault_discovery import REPORT, safe_url
+from vault_discovery import REPORT, safe_url, public_dns
 
 def main():
     data = json.loads(REPORT.read_text(encoding="utf-8"))
-    targets = data.get("proposals", [])[:6] + data.get("audit", [])[:4]
+    targets = data.get("proposals", [])[:24] + data.get("audit", [])[:6]
     try:
         from playwright.sync_api import sync_playwright, TimeoutError as BrowserTimeout
     except ImportError:
@@ -39,10 +39,18 @@ def main():
                 continue
             context = browser.new_context(ignore_https_errors=False, service_workers="block",
                                           viewport={"width": 1280, "height": 720})
+            # Prevent headless browser navigations to private services or metadata.
+            def guard_navigation(route):
+                request = route.request
+                if request.is_navigation_request() and (not safe_url(request.url) or not public_dns(request.url)):
+                    route.abort()
+                else:
+                    route.continue_()
+            context.route("**/*", guard_navigation)
             page = context.new_page()
             try:
-                response = page.goto(item["url"], wait_until="domcontentloaded", timeout=15000)
-                page.wait_for_timeout(1400)
+                response = page.goto(item["url"], wait_until="domcontentloaded", timeout=12000)
+                page.wait_for_timeout(850)
                 state = page.evaluate("""() => ({
                     canvas: document.querySelectorAll('canvas').length,
                     iframe: document.querySelectorAll('iframe').length,

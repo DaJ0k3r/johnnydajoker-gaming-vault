@@ -22,6 +22,16 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(vd.normalize("https://WWW.Example.org/play/"),
                          vd.normalize("https://example.org/play"))
 
+    def test_dns_safety_blocks_private_and_reserved_answers(self):
+        private = [(2, 1, 6, "", ("127.0.0.1", 443))]
+        public = [(2, 1, 6, "", ("1.1.1.1", 443))]
+        with patch.object(vd.socket, "getaddrinfo", return_value=private):
+            self.assertFalse(vd.public_dns("https://example.org/"))
+        with patch.object(vd.socket, "getaddrinfo", return_value=public):
+            self.assertTrue(vd.public_dns("https://example.org/"))
+        with patch.object(vd.socket, "getaddrinfo", side_effect=OSError("DNS failed")):
+            self.assertFalse(vd.public_dns("https://example.org/"))
+
     def test_approval_only_stages_checked_candidate_and_never_verifies(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

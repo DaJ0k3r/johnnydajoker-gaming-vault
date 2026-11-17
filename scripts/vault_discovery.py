@@ -9,6 +9,7 @@ Usage:
 import argparse
 import base64
 import datetime as dt
+from concurrent.futures import ThreadPoolExecutor
 import html
 import ipaddress
 import json
@@ -19,7 +20,7 @@ import re
 import socket
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urlsplit, urlunsplit
-from urllib.request import Request, urlopen
+from urllib.request import Request, urlopen, build_opener, HTTPRedirectHandler
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "reports" / "vault-discovery.json"
@@ -27,8 +28,8 @@ ISSUE_MD = ROOT / "reports" / "vault-approvals.md"
 QUEUE = ROOT / "data" / "discovery" / "candidates.json"
 CATALOG = ROOT / "data" / "catalog.js"
 MARKER = "VAULT_DISCOVERY_PAYLOAD:"
-MAX_PROPOSALS = 6
-MAX_AUDIT = 12
+MAX_PROPOSALS = 48
+MAX_AUDIT = 40
 
 def catalogue():
     text = CATALOG.read_text(encoding="utf-8")
@@ -56,6 +57,25 @@ def safe_url(url):
         return True
     except (ValueError, TypeError):
         return False
+
+def public_dns(url):
+    """Fail closed on private/reserved DNS answers, including metadata addresses."""
+    if not safe_url(url):
+        return False
+    try:
+        addresses = socket.getaddrinfo(urlsplit(url).hostname, 443, type=socket.SOCK_STREAM)
+        return bool(addresses) and all(ipaddress.ip_address(info[4][0]).is_global
+                                       for info in addresses)
+    except (OSError, ValueError):
+        return False
+
+class PublicOnlyRedirect(HTTPRedirectHandler):
+    def redirect_request(self, request, response, code, msg, headers, newurl):
+        if not public_dns(newurl):
+            raise URLError("Blocked unsafe redirect target")
+        return super().redirect_request(request, response, code, msg, headers, newurl)
+
+HTTP_OPENER = build_opener(PublicOnlyRedirect())
 
 def normalize(url):
     if not safe_url(url):
@@ -95,19 +115,53 @@ def prior_proposal_ids():
         print(f"Prior issue lookup unavailable ({exc}); existing queue and catalogue still deduplicated")
     return ids
 
+def pending_week_candidates():
+    """Deduplicate today's scan against the week's unmerged automatic intake PR."""
+    repo = os.environ.get("GITHUB_REPOSITORY", "")
+    if not re.fullmatch(r"[\w.-]+/[\w.-]+", repo):
+        return []
+    now = dt.datetime.now(ZoneInfo("Australia/Brisbane")).isocalendar()
+    ref = f"vault-auto-{now.year}-W{now.week:02d}"
+    path = f"https://api.github.com/repos/{repo}/contents/data/discovery/candidates.json"
+    try:
+        payload = request_json(path + "?" + urlencode({"ref": ref}))
+        encoded = payload.get("content", "")
+        if not encoded:
+            return []
+        decoded = base64.b64decode(encoded).decode("utf-8")
+        entries = json.loads(decoded).get("entries", [])
+        return [g for g in entries if isinstance(g, dict)]
+    except (HTTPError, URLError, ValueError, KeyError, UnicodeDecodeError) as exc:
+        print(f"No pending weekly intake branch visible ({type(exc).__name__})")
+        return []
+
 def discover_repositories(known_urls, known_titles, prior_ids):
     """GitHub topic search: discovery evidence, never proof of gameplay or distribution rights."""
     proposed = []
     seen = set()
-    for query in ("topic:browser-game stars:>10 archived:false",
-                  "topic:html5-game stars:>10 archived:false"):
-        args = urlencode({"q": query, "sort": "updated", "order": "desc", "per_page": 35})
+    search_modes = (
+        ("topic:browser-game archived:false", "updated"),
+        ("topic:html5-game archived:false", "updated"),
+        ("topic:browser-games archived:false", "updated"),
+        ("topic:web-games archived:false", "updated"),
+        ("topic:browser-game stars:>15 archived:false", "stars"),
+        ("topic:html5-games archived:false", "updated"),
+    )
+    batches = []
+    for query, sort in search_modes:
+        args = urlencode({"q": query, "sort": sort, "order": "desc", "per_page": 70})
         try:
             found = request_json("https://api.github.com/search/repositories?" + args).get("items", [])
         except (HTTPError, URLError, ValueError) as exc:
             print(f"GitHub discovery search unavailable ({exc})")
             continue
-        for item in found:
+        batches.append(found)
+    # Round-robin sources so a large topic doesn't monopolise the entire weekly intake.
+    for batch_index in range(max((len(batch) for batch in batches), default=0)):
+        for batch in batches:
+            if batch_index >= len(batch):
+                continue
+            item = batch[batch_index]
             repo_id = "gh-" + str(item.get("id", ""))
             title = short(item.get("name", ""), 75)
             homepage = str(item.get("homepage") or "").strip().rstrip("/")
@@ -137,10 +191,12 @@ def inspect_http(url):
     """HEAD/GET availability only; hostile bots/403s remain uncertain, not broken."""
     if not safe_url(url):
         return "unsafe-url"
+    if not public_dns(url):
+        return "network-uncertain"
     try:
         req = Request(url, headers={"User-Agent": "Mozilla/5.0 MADHOUSE-Vault-Audit"},
                       method="HEAD")
-        with urlopen(req, timeout=9) as response:
+        with HTTP_OPENER.open(req, timeout=9) as response:
             code = response.status
             target = response.url
         if not safe_url(target):
@@ -151,7 +207,7 @@ def inspect_http(url):
             try:
                 req = Request(url, headers={"User-Agent": "Mozilla/5.0 MADHOUSE-Vault-Audit"},
                               method="GET")
-                with urlopen(req, timeout=9) as response:
+                with HTTP_OPENER.open(req, timeout=9) as response:
                     return "http-" + str(response.status) if safe_url(response.url) else "redirect-review"
             except (HTTPError, URLError, TimeoutError) as inner:
                 return "http-" + str(inner.code) if isinstance(inner, HTTPError) else "network-uncertain"
@@ -162,26 +218,35 @@ def inspect_http(url):
 def run_scan():
     games = catalogue()
     queued = queue()["entries"]
-    known_urls = {normalize(g.get("url")) for g in games + queued
-                  if normalize(g.get("url"))}
-    known_urls.update(normalize(q.get("playUrl")) for q in queued if normalize(q.get("playUrl")))
-    known_titles = {normalized_title(g.get("title")) for g in games + queued}
+    pending = pending_week_candidates()
+    all_known = games + queued + pending
+    known_urls = {normalize(u) for g in all_known
+                  for u in (g.get("url"), g.get("playUrl"), g.get("sourceUrl"))
+                  if normalize(u)}
+    known_titles = {normalized_title(g.get("title")) for g in all_known}
     prior_ids = prior_proposal_ids()
+    prior_ids.update(str(g.get("id", "")).removeprefix("auto-")
+                     for g in pending if str(g.get("id", "")).startswith("auto-gh-"))
     proposals = discover_repositories(known_urls, known_titles, prior_ids)
-    for item in proposals:
-        item["http"] = inspect_http(item["url"])
+    # Parallel bounded requests prevent a handful of timeouts from stalling the scan.
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        checks = list(executor.map(inspect_http, [g["url"] for g in proposals]))
+    for item, result in zip(proposals, checks):
+        item["http"] = result
     # Rotate audits so this remains free/cheap and does not hammer 146 sites every run.
-    week = dt.datetime.now(ZoneInfo('Australia/Brisbane')).isocalendar().week
-    start = (week * MAX_AUDIT) % max(1, len(games))
+    day = dt.datetime.now(ZoneInfo('Australia/Brisbane')).date()
+    start = (day.toordinal() * MAX_AUDIT) % max(1, len(games))
     chosen = (games[start:] + games[:start])[:MAX_AUDIT]
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        audit_checks = list(executor.map(inspect_http, [g.get("url") for g in chosen]))
     audit = [{"title": g.get("title"), "url": g.get("url"), "catalogueStatus": g.get("status"),
-              "http": inspect_http(g.get("url"))} for g in chosen]
+              "http": result} for g, result in zip(chosen, audit_checks)]
     result = {"generated": dt.datetime.now(dt.timezone.utc).isoformat(), "proposals": proposals,
               "audit": audit, "catalogueCount": len(games),
               "queueCount": len(queued), "note": "HTTP status is not evidence of playable gameplay."}
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     REPORT.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(f"Discovered {len(proposals)} new GitHub candidates; audited {len(audit)} existing URLs.")
+    print(f"Discovered {len(proposals)} new GitHub candidates; audited {len(audit)} existing URLs. All remain unverified.")
     render()
 
 def extract_payload(body):
@@ -197,36 +262,61 @@ def extract_payload(body):
     return [x for x in data if isinstance(x, dict)]
 
 def render():
+    """A single weekly BATCH review, never one approval per game."""
     report = json.loads(REPORT.read_text(encoding="utf-8"))
     p = report["proposals"]
     audit = report["audit"]
-    now = dt.datetime.now(ZoneInfo('Australia/Brisbane')).isocalendar()
+    intake_path = ROOT / "reports" / "vault-intake-summary.json"
+    intake = json.loads(intake_path.read_text(encoding="utf-8")) if intake_path.exists() else {}
+    counts = intake.get("counts", {})
+    now = dt.datetime.now(ZoneInfo("Australia/Brisbane")).isocalendar()
+    batch_url = os.environ.get("STAGING_PR_URL", "")
+    compare = os.environ.get("STAGING_COMPARE_URL", "")
     lines = [f"# MADHOUSE Discovery approvals — {now.year}-W{now.week:02d}", "",
-             "**Your job:** tick the checkbox beside anything you want researched in the Test Lab. "
-             "That queues an **UNVERIFIED candidate** into a protected pull request; it does **not** "
-             "publish the game or claim gameplay-tested status.", "",
-             "## New game leads (automatic suggestions)", ""]
+             "**NEW DEFAULT: ALL ELIGIBLE NEW GAME LEADS ARE AUTOMATICALLY QUEUED.** "
+             "You do not need to tick games one by one. This is a batch review only.", "",
+             f"**Found:** {len(p)} new leads; "
+             f"**newly queued:** {counts.get('autoQueued', 'pending')}; "
+             f"**browser-render candidates:** {counts.get('renderCandidate', 'pending')}; "
+             f"**need further inspection:** {counts.get('needsInspection', 'pending')}; "
+             f"**existing links sampled:** {len(audit)}.", "",
+             "## Your one approval for the batch", "",
+             "Review the staged changes and **merge the staging PR** when happy. "
+             "This only accepts leads into the UNVERIFIED discovery queue; it does "
+             "**not** publish games. If any entries look unsuitable, flag them in "
+             "the PR comments so they can be excluded.", ""]
+    if batch_url:
+        lines.append(f"**[Open automatic discovery batch]({batch_url})**")
+    elif compare:
+        lines.append(f"**[Open proposed discovery branch]({compare})**")
+        lines.append("GitHub Actions could not open a PR automatically. "
+                     "The branch was pushed and can be converted to a PR.")
+    else:
+        lines.append("No staging PR link was available; see the discovery workflow logs.")
+    lines += ["", "## New game leads — automatically considered, not gameplay-verified", ""]
     if not p:
-        lines.append("No fresh, non-duplicate leads found in this scan.")
+        lines.append("No fresh unique projects found. The next scheduled scan will try again.")
     for item in p:
-        title = short(item["title"], 75)
-        desc = short(item.get("description"), 120)
-        evidence = f"HTTP: {item.get('http', 'not-checked')}; browser: {item.get('browser', 'not-tested')}"
-        lines += [f"- [ ] QUEUE FOR TEST LAB `{item['id']}` — **{title}**",
-                  f"  - [Candidate launch]({item['url']}) · [GitHub source]({item['sourceUrl']}) · {evidence}",
-                  f"  - {desc or 'No description supplied'}. Human gameplay, safety and rights review needed."]
-    lines += ["", "## Existing game-link spot check", "",
-              "These checks only tell us whether automated requests succeeded; they cannot prove games launch.", ""]
+        title = short(item.get("title"), 75)
+        desc = short(item.get("description"), 100)
+        observation = f"HTTP {item.get('http', 'not-checked')}; browser {item.get('browser', 'not-tested')}"
+        lines += [f"- **{title}** — [candidate page]({item['url']}) · "
+                  f"[project source]({item['sourceUrl']}) · {observation}",
+                  f"  - {desc or 'No description supplied'}. Actual game start, rights and embedding remain unverified."]
+    lines += ["", "## Existing-link health sampling", "",
+              "A URL response or canvas is never evidence of a full playthrough.", ""]
     for g in audit:
-        lines.append(f"- **{short(g['title'], 60)}** — HTTP: {g['http']}; browser: {g.get('browser', 'not-sampled')} ({g['catalogueStatus']})")
-    lines += ["", "**After ticking:** GitHub prepares a review PR with newly approved entries in "
-              "`data/discovery/candidates.json`; they remain unverified until manually tested.",
-              "Issues edits by the repository owner trigger this step. No automatic public publishing.",
+        lines.append(f"- **{short(g['title'], 60)}** — HTTP {g['http']}; "
+                     f"browser {g.get('browser', 'not-sampled')} ({g['catalogueStatus']})")
+    lines += ["", "## What happens next", "",
+              "Automatic discovery -> safe deduplication -> UNVERIFIED staging PR -> "
+              "one batch merge -> Test Lab / real gameplay checks -> separate publication decision. "
+              "No copyright files are hosted. No automatic 'verified' status.",
               "", "<!-- " + MARKER +
               base64.urlsafe_b64encode(json.dumps(p, separators=(",", ":")).encode()).decode() + " -->", ""]
     ISSUE_MD.parent.mkdir(parents=True, exist_ok=True)
     ISSUE_MD.write_text("\n".join(lines), encoding="utf-8")
-    print("Checklist written:", ISSUE_MD)
+    print("Batch review written:", ISSUE_MD)
 
 def approve(body_file):
     body = Path(body_file).read_text(encoding="utf-8")
