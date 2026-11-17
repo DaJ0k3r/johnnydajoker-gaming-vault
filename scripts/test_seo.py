@@ -63,6 +63,26 @@ class SEOTests(unittest.TestCase):
             self.assertIn(f'<link rel="canonical" href="{url}">', content)
             self.assertIn('name="description"', content)
 
+    def test_real_site_audit_page_fixes(self):
+        # Prevent regression of the missing-H1 and very-short-description
+        # issues found in our independent 15-page crawl.
+        import re
+        for path in ("games/neon-dodge/index.html", "games/nightshift-racer/index.html"):
+            page = (ROOT / path).read_text(encoding="utf-8")
+            self.assertRegex(page, r"<h1>[^<]+</h1>")
+            self.assertIn("How to play" if "neon-dodge" in path else "modes, controls and scoring", page)
+        for name in ("about.html", "contact.html", "privacy.html", "takedown.html"):
+            page = (ROOT / name).read_text(encoding="utf-8")
+            meta = re.search(r'<meta name="description" content="([^"]+)"', page)
+            self.assertIsNotNone(meta, name)
+            self.assertGreaterEqual(len(meta.group(1)), 105, name)
+            self.assertLessEqual(len(meta.group(1)), 165, name)
+            self.assertGreater(page.count("<p>"), 2, name)
+        home = (ROOT / "index.html").read_text(encoding="utf-8")
+        description = re.search(r'<meta name="description" content="([^"]+)"', home)
+        self.assertIsNotNone(description)
+        self.assertLessEqual(len(description.group(1)), 160)
+
     def test_robots_references_sitemap_without_blocking_indexable_resources(self):
         robots = (ROOT / "robots.txt").read_text(encoding="utf-8")
         self.assertIn("User-agent: *", robots)
