@@ -28,7 +28,7 @@ def main():
                 # even if Playwright's downloadable Chromium failed to install.
                 browser = p.chromium.launch(channel="chrome", headless=True, args=["--no-sandbox"])
             except Exception as exc:
-                for item in data.get("proposals", []):
+                for item in targets:
                     item["browser"] = "browser-unavailable (" + type(exc).__name__ + ")"
                 REPORT.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
                 print("Chrome/Chromium unavailable; no game marked playable.")
