@@ -287,12 +287,13 @@
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1200317361",
       "title": "berrry-wine",
-      "category": "Browser game candidate",
+      "category": "Game discovery / development resource",
       "sourceUrl": "https://github.com/vgrichina/berrry-wine",
       "playUrl": "https://berrry.wine",
       "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
@@ -300,18 +301,19 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "launch-review",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 147
-      }
+      },
+      "entryType": "RESOURCE"
     },
     {
       "id": "auto-gh-1427928386",
       "title": "glitchless",
-      "category": "Browser game candidate",
+      "category": "Game discovery / development resource",
       "sourceUrl": "https://github.com/glitchless-gg/glitchless",
       "playUrl": "https://www.glitchless.gg",
       "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
@@ -319,13 +321,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "launch-review",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 5
-      }
+      },
+      "entryType": "RESOURCE"
     },
     {
       "id": "auto-gh-633700076",
@@ -344,7 +347,8 @@
         "http": "http-200",
         "browser": "rendered-with-controls (NOT gameplay-tested)",
         "sourceStars": 2
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1457695086",
@@ -363,7 +367,8 @@
         "http": "http-200",
         "browser": "rendered-with-controls (NOT gameplay-tested)",
         "sourceStars": 8
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1315513619",
@@ -382,7 +387,8 @@
         "http": "http-200",
         "browser": "rendered-with-controls (NOT gameplay-tested)",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-677467268",
@@ -401,12 +407,13 @@
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 2684
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-866520350",
       "title": "bridge",
-      "category": "Browser game candidate",
+      "category": "Game discovery / development resource",
       "sourceUrl": "https://github.com/Playgama/bridge",
       "playUrl": "https://playgama.com/developers",
       "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
@@ -414,13 +421,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "launch-review",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 99
-      }
+      },
+      "entryType": "RESOURCE"
     },
     {
       "id": "auto-gh-1231903862",
@@ -439,7 +447,8 @@
         "http": "http-200",
         "browser": "rendered-with-controls (NOT gameplay-tested)",
         "sourceStars": 136
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1453282331",
@@ -458,12 +467,13 @@
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1296546586",
       "title": "web-playables",
-      "category": "Browser game candidate",
+      "category": "Game discovery / development resource",
       "sourceUrl": "https://github.com/Significant-Hobbies/web-playables",
       "playUrl": "https://idle.aliveville.com",
       "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
@@ -471,13 +481,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "launch-review",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "rendered-with-controls (NOT gameplay-tested)",
         "sourceStars": 0
-      }
+      },
+      "entryType": "RESOURCE"
     },
     {
       "id": "auto-gh-31920956",
@@ -496,12 +507,13 @@
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 2055
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1460489540",
       "title": "100-games",
-      "category": "Browser game candidate",
+      "category": "Game discovery / development resource",
       "sourceUrl": "https://github.com/NnopponS/100-games",
       "playUrl": "https://nnoppons.github.io/100-games",
       "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
@@ -509,13 +521,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "launch-review",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 0
-      }
+      },
+      "entryType": "RESOURCE"
     },
     {
       "id": "auto-gh-1457595460",
@@ -534,7 +547,8 @@
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1454922664",
@@ -553,7 +567,8 @@
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1417830157",
@@ -572,7 +587,8 @@
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-11343009",
@@ -591,7 +607,8 @@
         "http": "http-200",
         "browser": "rendered-static-or-unclear",
         "sourceStars": 1733
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1441662132",
@@ -610,12 +627,13 @@
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 1
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-40428353",
       "title": "www.gamedev.pl",
-      "category": "Browser game candidate",
+      "category": "Game discovery / development resource",
       "sourceUrl": "https://github.com/gamedevpl/www.gamedev.pl",
       "playUrl": "https://www.gamedev.pl",
       "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
@@ -623,13 +641,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "launch-review",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 17
-      }
+      },
+      "entryType": "RESOURCE"
     },
     {
       "id": "auto-gh-1441935629",
@@ -648,12 +667,13 @@
         "http": "http-200",
         "browser": "rendered-with-controls (NOT gameplay-tested)",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1158430198",
       "title": "k8sgames",
-      "category": "Browser game candidate",
+      "category": "Game discovery / development resource",
       "sourceUrl": "https://github.com/rohitg00/k8sgames",
       "playUrl": "https://k8sgames.com",
       "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
@@ -661,18 +681,19 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "needs-inspection",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "blocked-or-error",
         "sourceStars": 1478
-      }
+      },
+      "entryType": "RESOURCE"
     },
     {
       "id": "auto-gh-1358416584",
       "title": "yougame-plugin",
-      "category": "Browser game candidate",
+      "category": "Game discovery / development resource",
       "sourceUrl": "https://github.com/yougame-co/yougame-plugin",
       "playUrl": "https://yougame.co/plugin",
       "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
@@ -680,13 +701,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "launch-review",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "rendered-with-controls (NOT gameplay-tested)",
         "sourceStars": 0
-      }
+      },
+      "entryType": "RESOURCE"
     },
     {
       "id": "auto-gh-1240941468",
@@ -705,7 +727,8 @@
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1124527036",
@@ -724,12 +747,13 @@
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1259958562",
       "title": "games-hub",
-      "category": "Browser game candidate",
+      "category": "Game discovery / development resource",
       "sourceUrl": "https://github.com/coltjbennett/games-hub",
       "playUrl": "https://coltjbennett.github.io/games-hub",
       "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
@@ -737,18 +761,19 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "needs-inspection",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 3
-      }
+      },
+      "entryType": "RESOURCE"
     },
     {
       "id": "auto-gh-1110128989",
       "title": "Aurora-OS.js",
-      "category": "Browser game candidate",
+      "category": "Game discovery / development resource",
       "sourceUrl": "https://github.com/mental-os/Aurora-OS.js",
       "playUrl": "https://mental-os.github.io/Aurora-OS.js",
       "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
@@ -756,13 +781,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "needs-inspection",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 755
-      }
+      },
+      "entryType": "RESOURCE"
     },
     {
       "id": "auto-gh-1083494734",
@@ -781,7 +807,8 @@
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 1
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-157332971",
@@ -800,7 +827,8 @@
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 1
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1449472590",
@@ -819,7 +847,8 @@
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1055028409",
@@ -838,12 +867,13 @@
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 2
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1389937382",
       "title": "GH-Arcade",
-      "category": "Browser game candidate",
+      "category": "Game discovery / development resource",
       "sourceUrl": "https://github.com/TMHSDigital/GH-Arcade",
       "playUrl": "https://tmhsdigital.github.io/GH-Arcade",
       "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
@@ -851,13 +881,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "needs-inspection",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 3
-      }
+      },
+      "entryType": "RESOURCE"
     },
     {
       "id": "auto-gh-1433120867",
@@ -876,7 +907,8 @@
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1461177467",
@@ -895,7 +927,8 @@
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1375592391",
@@ -914,7 +947,8 @@
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1260306273",
@@ -933,7 +967,8 @@
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1454054094",
@@ -952,7 +987,8 @@
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1440918373",
@@ -971,12 +1007,13 @@
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1411132742",
       "title": "GhostGames",
-      "category": "Browser game candidate",
+      "category": "Game discovery / development resource",
       "sourceUrl": "https://github.com/GhostFaceModz/GhostGames",
       "playUrl": "https://ghostgames.app",
       "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
@@ -984,18 +1021,19 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "needs-inspection",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 2
-      }
+      },
+      "entryType": "RESOURCE"
     },
     {
       "id": "auto-gh-1437096805",
       "title": "Opencade",
-      "category": "Browser game candidate",
+      "category": "Game discovery / development resource",
       "sourceUrl": "https://github.com/Davy45270/Opencade",
       "playUrl": "https://davy45270.github.io/Opencade",
       "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
@@ -1003,13 +1041,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "needs-inspection",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 0
-      }
+      },
+      "entryType": "RESOURCE"
     },
     {
       "id": "auto-gh-1460902860",
@@ -1028,7 +1067,8 @@
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1110235258",
@@ -1047,7 +1087,8 @@
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1194459977",
@@ -1066,7 +1107,8 @@
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 1
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1151925632",
@@ -1085,7 +1127,8 @@
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 606
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1461284053",
@@ -1104,7 +1147,8 @@
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 0
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1412105021",
@@ -1123,12 +1167,13 @@
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 1
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-1417520295",
       "title": "prism",
-      "category": "Browser game candidate",
+      "category": "Game discovery / development resource",
       "sourceUrl": "https://github.com/jfrelat-lab/prism",
       "playUrl": "https://prism-compiler.pages.dev",
       "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
@@ -1136,13 +1181,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "needs-inspection",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 3
-      }
+      },
+      "entryType": "RESOURCE"
     },
     {
       "id": "auto-gh-1398810590",
@@ -1161,7 +1207,8 @@
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 23
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     },
     {
       "id": "auto-gh-342961897",
@@ -1180,7 +1227,8 @@
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 561
-      }
+      },
+      "entryType": "GAME_CANDIDATE"
     }
   ]
 }
