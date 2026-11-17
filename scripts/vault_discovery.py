@@ -20,7 +20,7 @@ import re
 import socket
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urlsplit, urlunsplit
-from urllib.request import Request, urlopen
+from urllib.request import Request, urlopen, build_opener, HTTPRedirectHandler
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "reports" / "vault-discovery.json"
@@ -57,6 +57,25 @@ def safe_url(url):
         return True
     except (ValueError, TypeError):
         return False
+
+def public_dns(url):
+    """Fail closed on private/reserved DNS answers, including metadata addresses."""
+    if not safe_url(url):
+        return False
+    try:
+        addresses = socket.getaddrinfo(urlsplit(url).hostname, 443, type=socket.SOCK_STREAM)
+        return bool(addresses) and all(ipaddress.ip_address(info[4][0]).is_global
+                                       for info in addresses)
+    except (OSError, ValueError):
+        return False
+
+class PublicOnlyRedirect(HTTPRedirectHandler):
+    def redirect_request(self, request, response, code, msg, headers, newurl):
+        if not public_dns(newurl):
+            raise URLError("Blocked unsafe redirect target")
+        return super().redirect_request(request, response, code, msg, headers, newurl)
+
+HTTP_OPENER = build_opener(PublicOnlyRedirect())
 
 def normalize(url):
     if not safe_url(url):
@@ -172,10 +191,12 @@ def inspect_http(url):
     """HEAD/GET availability only; hostile bots/403s remain uncertain, not broken."""
     if not safe_url(url):
         return "unsafe-url"
+    if not public_dns(url):
+        return "network-uncertain"
     try:
         req = Request(url, headers={"User-Agent": "Mozilla/5.0 MADHOUSE-Vault-Audit"},
                       method="HEAD")
-        with urlopen(req, timeout=9) as response:
+        with HTTP_OPENER.open(req, timeout=9) as response:
             code = response.status
             target = response.url
         if not safe_url(target):
