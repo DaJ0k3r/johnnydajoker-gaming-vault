@@ -25,6 +25,13 @@ def check_site(page, url, mobile=False):
     page.route("https://**", lambda route: route.abort())
     page.goto(url, wait_until="domcontentloaded", timeout=20000)
     page.locator("#grid .card").first.wait_for(timeout=12000)
+    # Responsive hero asset must match viewport, and its server response must be real.
+    art_name = "hero-mobile.webp" if mobile else "hero-desktop.webp"
+    computed = page.locator(".madhouse-hero").evaluate("(el) => getComputedStyle(el).backgroundImage")
+    assert art_name in computed, "Wrong responsive artwork used: " + computed[:240]
+    response = page.request.get(url + "assets/" + art_name)
+    assert response.status == 200, "Missing responsive hero art"
+    assert "image/webp" in response.headers.get("content-type", ""), "Unexpected hero MIME"
     assert page.locator("#grid .card").count() > 3, "No live catalogue cards"
     assert int(page.locator("#total").inner_text()) >= 100, "Unexpected catalogue count"
     assert page.locator("#daily-play").get_attribute("href") not in ("", "#", None), "Daily game not resolved"
