@@ -3,9 +3,11 @@ on:
   push:
     branches:
       - phase-1-rebased-2026-11
+      - vault-testlab-discovery-feed
   pull_request:
     branches:
       - main
+      - phase-1-rebased-2026-11
   workflow_dispatch:
 permissions:
   contents: read
