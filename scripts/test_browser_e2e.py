@@ -24,6 +24,8 @@ def check_site(page, url, mobile=False):
     # No analytics, external adverts, game pages or third-party images in CI.
     page.route("https://**", lambda route: route.abort())
     page.goto(url, wait_until="domcontentloaded", timeout=20000)
+    assert page.locator("html").evaluate("(el)=>el.classList.contains('skip-joker-intro')"), "Returning visitor did not get early intro bypass"
+
     page.locator("#grid .card").first.wait_for(timeout=12000)
     assert page.locator("#grid .card").count() > 3, "No live catalogue cards"
     assert int(page.locator("#total").inner_text()) >= 100, "Unexpected catalogue count"
@@ -108,6 +110,19 @@ def main():
                     check_site(page, url, mobile)
                 finally:
                     ctx.close()
+            # First visit must still show Johnny's full cinematic intro;
+            # tapping SKIP should save preference and make the next navigation instant.
+            first = browser.new_context(viewport={"width":390,"height":844}, is_mobile=True, has_touch=True, service_workers="block")
+            fresh = first.new_page()
+            fresh.route("https://**", lambda route: route.abort())
+            fresh.goto(url, wait_until="domcontentloaded", timeout=20000)
+            fresh.locator("#joker-intro").wait_for(state="visible", timeout=6000)
+            assert not fresh.locator("html").evaluate("(el)=>el.classList.contains('skip-joker-intro')"), "First visitor lost branded intro"
+            fresh.locator("#intro-skip").tap(timeout=6000)
+            assert fresh.evaluate("localStorage.getItem('jdj-intro-skip-v1')==='1'"), "Skip choice not saved"
+            fresh.reload(wait_until="domcontentloaded")
+            assert fresh.locator("html").evaluate("(el)=>el.classList.contains('skip-joker-intro')"), "Intro replayed unexpectedly on return"
+            first.close()
             browser.close()
     finally:
         server.shutdown()

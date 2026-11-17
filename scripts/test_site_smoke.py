@@ -96,6 +96,24 @@ class VaultSmokeTests(unittest.TestCase):
                     "file_0000000034dc8211871698b8baa78445.png"):
             self.assertNotIn("url('" + old + "')", HTML)
 
+    def test_cinematic_intro_stays_available_without_reloading_art_on_return(self):
+        # The full original intro still plays on first visits and on replay,
+        # while returning visitors skip it before browsers fetch intro artwork.
+        self.assertIn("skip-joker-intro", HTML)
+        self.assertIn("sessionStorage.getItem('jdj-intro-seen')", HTML)
+        self.assertIn("localStorage.getItem('jdj-intro-skip-v1')", HTML)
+        self.assertIn("html.skip-joker-intro #joker-intro{display:none!important}", HTML)
+        self.assertIn("authenticPortrait 7.2s", HTML)
+        self.assertIn('id="replay-intro"', HTML)
+        for size in (600, 960):
+            name = f"JohnnyDaJoker_Portrait_{size}.webp"
+            image = ROOT / name
+            self.assertTrue(image.exists(), name)
+            self.assertLess(image.stat().st_size, 250000, name)
+            self.assertIn(name, HTML)
+        self.assertNotIn("url('JohnnyDaJoker.png')", HTML)
+        self.assertIn("intro-art{background-image:url('JohnnyDaJoker_Hero_960.webp')", HTML)
+
     def test_automatic_discovery_feed_in_test_lab(self):
         # Feed is read from the same origin, stays UNVERIFIED, and never
         # overwrites the user's existing Test Lab localStorage results.
