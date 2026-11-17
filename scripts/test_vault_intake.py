@@ -65,6 +65,29 @@ class IntakeTests(unittest.TestCase):
         self.assertEqual(again["counts"]["autoQueued"], 0)
         self.assertEqual(len(json.loads(self.queue.read_text())["entries"]), 2)
 
+    def test_resource_tools_are_staged_for_research_not_as_games(self):
+        proposals = [
+            {"id": "gh-200", "title": "glitchless",
+             "description": "Game observability for developers",
+             "url": "https://glitchless.example.org",
+             "sourceUrl": "https://github.com/dev/glitchless",
+             "http": "http-200", "browser": "rendered-with-controls"},
+            {"id": "gh-201", "title": "Real Arcade",
+             "description": "An HTML5 browser arcade game",
+             "url": "https://arcade.example.org",
+             "sourceUrl": "https://github.com/dev/arcade",
+             "http": "http-200", "browser": "rendered-with-canvas"}
+        ]
+        result = self.run_intake(proposals)
+        self.assertEqual(result["counts"]["autoQueued"], 2)
+        self.assertEqual(result["counts"]["resourceLeads"], 1)
+        self.assertEqual(result["counts"]["renderCandidate"], 1)
+        entries = json.loads(self.queue.read_text())["entries"]
+        self.assertEqual([g["entryType"] for g in entries], ["RESOURCE", "GAME_CANDIDATE"])
+        self.assertEqual(entries[0]["reviewPriority"], "resource-review")
+        self.assertEqual(entries[0]["status"], "unverified")
+        self.assertFalse(entries[0]["readyForPublicCatalogue"])
+
     def test_same_source_repository_cannot_be_staged_twice(self):
         leads = [
             {"id": "gh-1", "title": "Game One", "url": "https://one.example/play",

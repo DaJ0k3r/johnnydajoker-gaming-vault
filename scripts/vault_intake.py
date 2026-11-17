@@ -13,6 +13,23 @@ import vault_discovery as vd
 
 SUMMARY = vd.ROOT / "reports" / "vault-intake-summary.json"
 
+def classify_project(project):
+    """Conservative triage only, never a claim that browser gameplay works."""
+    name = str(project.get("title", "")).lower().replace("_", "-")
+    description = str(project.get("description", "")).lower()
+    launch_url = str(project.get("url", "")).lower()
+    resource_titles = ("-plugin", "plugin-", "-compiler", "-framework", "games-hub",
+                       "game-hub", "gamedev", "100-games", "web-playables", "os.js")
+    resource_descriptions = ("game observability", "developer sdk", "game developer platform",
+                             "game development tools", "game development news",
+                             "software development kit", "emulator and", "x86 emulator",
+                             "compiles code", "framework for games", "library for game developers")
+    if (any(token in name for token in resource_titles)
+        or any(token in description for token in resource_descriptions)
+        or "/developers" in launch_url or "compiler." in launch_url):
+        return "RESOURCE"
+    return "GAME_CANDIDATE"
+
 def stage(report_path=None, queue_path=None, catalog_path=None):
     report_file = Path(report_path or vd.REPORT)
     queue_file = Path(queue_path or vd.QUEUE)
@@ -26,7 +43,7 @@ def stage(report_path=None, queue_path=None, catalog_path=None):
                   for u in (g.get("url"), g.get("playUrl"), g.get("sourceUrl"))
                   if vd.normalize(u)}
     known_titles = {vd.normalized_title(g.get("title")) for g in entries + catalog}
-    counts = {"autoQueued": 0, "renderCandidate": 0, "needsInspection": 0,
+    counts = {"autoQueued": 0, "renderCandidate": 0, "needsInspection": 0, "resourceLeads": 0,
               "duplicates": 0, "unsafe": 0, "proposals": len(report.get("proposals", []))}
     added = []
     for p in report.get("proposals", []):
@@ -47,11 +64,15 @@ def stage(report_path=None, queue_path=None, catalog_path=None):
         http_result = str(p.get("http", "not-checked"))
         browser_result = str(p.get("browser", "not-tested"))
         possible_launch = (http_result == "http-200" and browser_result.startswith("rendered-"))
-        priority = "launch-review" if possible_launch else "needs-inspection"
+        entry_kind = classify_project(p)
+        priority = ("resource-review" if entry_kind == "RESOURCE"
+                    else "launch-review" if possible_launch else "needs-inspection")
         entry = {
             "id": new_id,
             "title": title,
-            "category": "Browser game candidate",
+            "category": "Browser game candidate" if entry_kind == "GAME_CANDIDATE" else "Development resource",
+            "entryType": entry_kind,
+            "sourceDescription": vd.short(p.get("description", ""), 180),
             "sourceUrl": source,
             "playUrl": url,
             "sourceRequirements": ("Automatically discovered public GitHub project. "
@@ -72,7 +93,8 @@ def stage(report_path=None, queue_path=None, catalog_path=None):
         entries.append(entry)
         added.append(entry)
         counts["autoQueued"] += 1
-        counts["renderCandidate" if possible_launch else "needsInspection"] += 1
+        counts["resourceLeads" if entry_kind == "RESOURCE" else
+               "renderCandidate" if possible_launch else "needsInspection"] += 1
         existing_ids.add(new_id)
         known_titles.add(vd.normalized_title(title))
         known_urls.add(vd.normalize(url))

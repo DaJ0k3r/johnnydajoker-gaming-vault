@@ -87,7 +87,8 @@ class VaultSmokeTests(unittest.TestCase):
         self.assertIn('TRY INSIDE MADHOUSE (BETA)', HTML)
         self.assertIn('id="lab-player-frame"', HTML)
         self.assertIn('sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms"', HTML)
-        self.assertIn("these are not verified games", HTML)
+        self.assertIn("unverified game leads loaded for testing", HTML)
+        self.assertIn("g.entryType==='RESOURCE'", HTML)
         feed = json.loads((ROOT / "data" / "discovery" / "candidates.json").read_text(encoding="utf-8"))
         self.assertIsInstance(feed.get("entries"), list)
 
