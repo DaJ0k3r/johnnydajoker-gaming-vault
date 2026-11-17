@@ -1,7 +1,7 @@
 name: MADHOUSE Vault Discovery & Approvals
 on:
   push:
-    branches: [vault-automation-v1]
+    branches: [main, vault-automation-v1]
     paths: ['scripts/vault_*.py', 'scripts/test_vault_discovery.py', '.github/workflows/vault-discovery.yml']
   pull_request:
     branches: [main]
