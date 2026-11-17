@@ -77,6 +77,23 @@ jobs:
           else
             gh issue create --title "$title" --body-file reports/vault-approvals.md --assignee "$OWNER"
           fi
+      - name: Record manual scan outcome on control issue
+        if: github.event_name == 'issues'
+        env:
+          TRIGGER_ISSUE: ${{ github.event.issue.number }}
+        run: |
+          python - <<'PY'
+          import json
+          d = json.load(open("reports/vault-discovery.json"))
+          x = ["MADHOUSE discovery run completed.", "",
+               f"New suggestions: {len(d['proposals'])}; existing links checked: {len(d['audit'])}.",
+               "", "**Browser observations (not playthrough verification):**"]
+          x.extend(f"- {q['title']}: {q.get('browser', 'not-tested')}" for q in d["proposals"])
+          x += ["", "Review this week's assigned MADHOUSE Discovery approvals issue for checkboxes."]
+          open("reports/scan-summary.md", "w").write("\n".join(x) + "\n")
+          PY
+          gh issue comment "$TRIGGER_ISSUE" --body-file reports/scan-summary.md
+          gh issue close "$TRIGGER_ISSUE" --reason completed
   stage-approved-candidates:
     if: >-
       github.event_name == 'issues' &&
