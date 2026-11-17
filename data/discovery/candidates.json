@@ -1233,8 +1233,8 @@
     {
       "id": "auto-gh-1461991943",
       "title": "makefun-best-game-01-r2",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "The Last Lamplighter — a one-flame village keeper game for make.fun best-game-01",
       "sourceUrl": "https://github.com/xplaynode/makefun-best-game-01-r2",
       "playUrl": "https://make.fun/bounty/best-game-01",
@@ -1243,19 +1243,20 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "launch-review",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 0
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-1455696492",
       "title": "playbook",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "The best AI-made web games in one place, plus open recipes you can remake in your own coding agent.",
       "sourceUrl": "https://github.com/rexgu9911/playbook",
       "playUrl": "https://rexgu9911.github.io/playbook",
@@ -1264,13 +1265,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "launch-review",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "rendered-with-controls (NOT gameplay-tested)",
         "sourceStars": 0
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-1431938382",
@@ -1338,8 +1340,8 @@
     {
       "id": "auto-gh-1444904506",
       "title": "gamealia-mcp",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "MCP server to publish web games on Gamealia from Claude Code, Cursor, Codex and other AI assistants: SDK, browser autotest, listing, upload. Developers keep 60-",
       "sourceUrl": "https://github.com/gamealia/gamealia-mcp",
       "playUrl": "https://gamealia.app/docs/publishing-with-ai",
@@ -1348,19 +1350,20 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "launch-review",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 0
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-1221094816",
       "title": "Web-juegos",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "Galería web dinámica y escalable de minijuegos para el navegador. Desarrollada con arquitectura frontend modular (HTML5/CSS3/JS Vanilla) que renderiza tarjetas",
       "sourceUrl": "https://github.com/alberto2005-coder/Web-juegos",
       "playUrl": "https://albertoortiz.is-a.dev/Web-juegos",
@@ -1369,19 +1372,20 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "launch-review",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "rendered-with-controls (NOT gameplay-tested)",
         "sourceStars": 2
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-1461663707",
       "title": "Playbox",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "A growing collection of playful browser games. First release: Blocky 24.",
       "sourceUrl": "https://github.com/BreadQiu/Playbox",
       "playUrl": "https://breadqiu.github.io/Playbox",
@@ -1390,13 +1394,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "launch-review",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "rendered-static-or-unclear",
         "sourceStars": 0
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-1459368040",
@@ -1443,8 +1448,8 @@
     {
       "id": "auto-gh-1461549918",
       "title": "little-explorers",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "A publicly available collection of printable games and worksheets for children aged 3–5. The activities are ad-free and available in multiple languages.",
       "sourceUrl": "https://github.com/milanjankovec/little-explorers",
       "playUrl": "https://milanjankovec.github.io/little-explorers",
@@ -1453,19 +1458,20 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "launch-review",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "rendered-static-or-unclear",
         "sourceStars": 0
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-1449368255",
       "title": "Arcadewelten-Arcade",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "Self-hosted arcade for phpBB 3.3: highscores, tournaments, duels and hall of fame. Supports IBPro, IBPro v3, Activity Mod and HTML5 games, Flash via self-hosted",
       "sourceUrl": "https://github.com/JohnyDoeLP/Arcadewelten-Arcade",
       "playUrl": "https://arcadewelten.eu/phpBB2/arcadehall",
@@ -1474,13 +1480,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "launch-review",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 0
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-1370449895",
@@ -1527,8 +1534,8 @@
     {
       "id": "auto-gh-1461551998",
       "title": "junior-explorers",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "A free collection of educational online games and printable worksheets for children aged 6–9. The activities are ad-free and available in multiple languages.",
       "sourceUrl": "https://github.com/milanjankovec/junior-explorers",
       "playUrl": "https://milanjankovec.github.io/junior-explorers",
@@ -1537,13 +1544,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "launch-review",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "rendered-static-or-unclear",
         "sourceStars": 0
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-1460350136",
@@ -1569,8 +1577,8 @@
     {
       "id": "auto-gh-1436254109",
       "title": "insert-pencil",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "No. 2 Arcade: 24 classic arcade games (1972 to 1985) redrawn as a high schooler's notebooks, with swap stickers, a hard mode and replay-checked leaderboards. Fr",
       "sourceUrl": "https://github.com/r3zgames/insert-pencil",
       "playUrl": "https://no2arca.de",
@@ -1579,19 +1587,20 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "launch-review",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 1
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-1440931396",
       "title": "KANTMICROGAMES",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "KANTMICROGAMES: tiny pixel games, one HTML5 index file, no advertisement, no user tracking, no accounts, and full privacy. This is an Ai/LLM assisted experiment",
       "sourceUrl": "https://github.com/lohyapkant/KANTMICROGAMES",
       "playUrl": "https://kantmicrogames.lohyapkant.workers.dev",
@@ -1600,13 +1609,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "launch-review",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 1
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-1392355444",
@@ -1716,8 +1726,8 @@
     {
       "id": "auto-gh-1461925407",
       "title": "gta6-01-entry-redo1",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "SOLMARA — Streets of the Sun: a tiny open-world crime game built by an AI agent for make.fun's Make GTA 6 bounty, $1,666 in prizes.",
       "sourceUrl": "https://github.com/Arisaf7/gta6-01-entry-redo1",
       "playUrl": "https://make.fun/bounty/gta6-01",
@@ -1726,19 +1736,20 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "launch-review",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
         "sourceStars": 0
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-1457281552",
       "title": "craftleaf-studio",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "Privacy-First Browser Micro-Tools (Passport 4x6 Photo, Invoice PDF, Duplex Flashcards), Dev Extensions (PasteShield & CleanPrint) & Print-and-Play Tabletop Game",
       "sourceUrl": "https://github.com/963239327/craftleaf-studio",
       "playUrl": "https://963239327.github.io/craftleaf-studio",
@@ -1747,13 +1758,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "needs-inspection",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 0
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-1456706531",
@@ -1800,8 +1812,8 @@
     {
       "id": "auto-gh-1088293182",
       "title": "games.aiandsons.io",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "Cade's Games by Ai and Sons: a browser arcade with shared-screen Party Mode, classroom tools, and a Firebase-backed account system.",
       "sourceUrl": "https://github.com/LEnc95/games.aiandsons.io",
       "playUrl": "https://games.aiandsons.io",
@@ -1810,13 +1822,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "needs-inspection",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 2
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-1316388080",
@@ -1863,8 +1876,8 @@
     {
       "id": "auto-gh-1425076740",
       "title": "juliangdeveloper.github.io",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "Portafolio: juegos y herramientas que corren en el navegador",
       "sourceUrl": "https://github.com/juliangdeveloper/juliangdeveloper.github.io",
       "playUrl": "https://juliangdeveloper.github.io",
@@ -1873,19 +1886,20 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "needs-inspection",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 0
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-228596376",
       "title": "PhaserEditor2D-v3",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "A web-based IDE for HTML5 game development. Powered by Phaser.",
       "sourceUrl": "https://github.com/PhaserEditor2D/PhaserEditor2D-v3",
       "playUrl": "https://phasereditor2d.com",
@@ -1894,13 +1908,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "needs-inspection",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 505
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-1444255354",
@@ -1926,8 +1941,8 @@
     {
       "id": "auto-gh-1322887943",
       "title": "GamesIO",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "Десять аркад в браузере без сборки и бэкенда: псевдо-3D гонки, змейка, танчики, платформер. Работает офлайн, таблица лидеров через GitHub Issues",
       "sourceUrl": "https://github.com/Aleksandr-Litvinenko/GamesIO",
       "playUrl": "https://aleksandr-litvinenko.github.io/GamesIO",
@@ -1936,13 +1951,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "needs-inspection",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 1
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-441067645",
@@ -1968,8 +1984,8 @@
     {
       "id": "auto-gh-1244503439",
       "title": "plixfy",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "Plixfy — 2,000+ free browser games in Arabic and English. Play instantly with no download.",
       "sourceUrl": "https://github.com/RUDY4K/plixfy",
       "playUrl": "https://www.plixfy.com",
@@ -1978,13 +1994,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "needs-inspection",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 0
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-365625482",
@@ -2052,8 +2069,8 @@
     {
       "id": "auto-gh-1454221776",
       "title": "guizang-game-skill",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "歸藏 Game Skill：让 AI 从零做出能在浏览器里玩的 3D 动作游戏，附可玩演示《雾锁山门》。Agent skill for Claude Code / Codex that builds a playable browser 3D action game with AI-generated assets (",
       "sourceUrl": "https://github.com/op7418/guizang-game-skill",
       "playUrl": "https://op7418.github.io/guizang-game-skill",
@@ -2062,13 +2079,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "needs-inspection",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 398
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-1436393527",
@@ -2115,8 +2133,8 @@
     {
       "id": "auto-gh-1458318612",
       "title": "krtuworks-sdk-js",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "Krtuworks SDK for JavaScript and TypeScript: Krtuworks ID sign-in, guests, events, stats, cloud saves, remote config.",
       "sourceUrl": "https://github.com/krtuworks/krtuworks-sdk-js",
       "playUrl": "https://partner.krtuworks.com/docs",
@@ -2125,13 +2143,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "needs-inspection",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 0
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     },
     {
       "id": "auto-gh-1246774332",
@@ -2220,8 +2239,8 @@
     {
       "id": "auto-gh-1455740647",
       "title": "github-leaderboard",
-      "category": "Browser game candidate",
-      "entryType": "GAME_CANDIDATE",
+      "category": "Research directory or development resource",
+      "entryType": "RESOURCE",
       "sourceDescription": "A spinning tornado of a year of GitHub contributions across the US: every state, division and region, every one of the 3,141 counties on a zoomable map, leaderb",
       "sourceUrl": "https://github.com/wbp318/github-leaderboard",
       "playUrl": "https://wbp318.github.io/github-leaderboard",
@@ -2230,13 +2249,14 @@
       "status": "unverified",
       "gameplayTested": false,
       "readyForPublicCatalogue": false,
-      "reviewPriority": "needs-inspection",
+      "reviewPriority": "resource-review",
       "discoverySource": "github-topic-search",
       "automationEvidence": {
         "http": "http-200",
         "browser": "not-tested",
         "sourceStars": 1
-      }
+      },
+      "editorialNote": "Research resource rather than a confirmed direct-play game. Follow source links to identify individual safe browser-playable games."
     }
   ]
 }
