@@ -269,6 +269,966 @@
         "reportedAt": "2026-11-09",
         "notes": "User reports successful play on Quenq"
       }
+    },
+    {
+      "id": "auto-gh-1461293114",
+      "title": "the-last-frame-dive",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/SongEast5858/the-last-frame-dive",
+      "playUrl": "https://songeast5858.github.io/the-last-frame-dive",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "launch-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1200317361",
+      "title": "berrry-wine",
+      "category": "Game discovery / development resource",
+      "sourceUrl": "https://github.com/vgrichina/berrry-wine",
+      "playUrl": "https://berrry.wine",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "resource-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
+        "sourceStars": 147
+      },
+      "entryType": "RESOURCE"
+    },
+    {
+      "id": "auto-gh-1427928386",
+      "title": "glitchless",
+      "category": "Game discovery / development resource",
+      "sourceUrl": "https://github.com/glitchless-gg/glitchless",
+      "playUrl": "https://www.glitchless.gg",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "resource-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
+        "sourceStars": 5
+      },
+      "entryType": "RESOURCE"
+    },
+    {
+      "id": "auto-gh-633700076",
+      "title": "lostseas",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/tonygustafsson/lostseas",
+      "playUrl": "https://lostseas.vercel.app",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "launch-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-controls (NOT gameplay-tested)",
+        "sourceStars": 2
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1457695086",
+      "title": "terrarium",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/AI-Terrarium/terrarium",
+      "playUrl": "https://terraium.ai",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "launch-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-controls (NOT gameplay-tested)",
+        "sourceStars": 8
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1315513619",
+      "title": "flambeee",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/jakepi-bot/flambeee",
+      "playUrl": "https://flambeee.com",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "launch-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-controls (NOT gameplay-tested)",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-677467268",
+      "title": "biomes-game",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/ill-inc/biomes-game",
+      "playUrl": "https://www.biomes.gg",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "launch-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
+        "sourceStars": 2684
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-866520350",
+      "title": "bridge",
+      "category": "Game discovery / development resource",
+      "sourceUrl": "https://github.com/Playgama/bridge",
+      "playUrl": "https://playgama.com/developers",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "resource-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
+        "sourceStars": 99
+      },
+      "entryType": "RESOURCE"
+    },
+    {
+      "id": "auto-gh-1231903862",
+      "title": "thehumanbox",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/1homsi/thehumanbox",
+      "playUrl": "https://thehumanbox.com",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "launch-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-controls (NOT gameplay-tested)",
+        "sourceStars": 136
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1453282331",
+      "title": "Game.Cesar",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/eduardoosganascimento-beep/Game.Cesar",
+      "playUrl": "https://eduardoosganascimento-beep.github.io/Game.Cesar",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "launch-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1296546586",
+      "title": "web-playables",
+      "category": "Game discovery / development resource",
+      "sourceUrl": "https://github.com/Significant-Hobbies/web-playables",
+      "playUrl": "https://idle.aliveville.com",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "resource-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-controls (NOT gameplay-tested)",
+        "sourceStars": 0
+      },
+      "entryType": "RESOURCE"
+    },
+    {
+      "id": "auto-gh-31920956",
+      "title": "cube-composer",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/sharkdp/cube-composer",
+      "playUrl": "https://david-peter.de/cube-composer",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "launch-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
+        "sourceStars": 2055
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1460489540",
+      "title": "100-games",
+      "category": "Game discovery / development resource",
+      "sourceUrl": "https://github.com/NnopponS/100-games",
+      "playUrl": "https://nnoppons.github.io/100-games",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "resource-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
+        "sourceStars": 0
+      },
+      "entryType": "RESOURCE"
+    },
+    {
+      "id": "auto-gh-1457595460",
+      "title": "sunslide",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/carlok/sunslide",
+      "playUrl": "https://carlok.github.io/sunslide",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "launch-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1454922664",
+      "title": "destiny-unbound",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/ScikuVRC/destiny-unbound",
+      "playUrl": "https://bzrkherja.itch.io/destiny-unbound",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "launch-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1417830157",
+      "title": "kidvo",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/AlparKacso/kidvo",
+      "playUrl": "https://kidvo.eu",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "launch-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-11343009",
+      "title": "Hypersomnia",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/TeamHypersomnia/Hypersomnia",
+      "playUrl": "https://hypersomnia.io",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "launch-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-static-or-unclear",
+        "sourceStars": 1733
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1441662132",
+      "title": "rc-car-in-class-",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/jaihari2006/rc-car-in-class-",
+      "playUrl": "https://jaihari2006.github.io/rc-car-in-class-",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "launch-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
+        "sourceStars": 1
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-40428353",
+      "title": "www.gamedev.pl",
+      "category": "Game discovery / development resource",
+      "sourceUrl": "https://github.com/gamedevpl/www.gamedev.pl",
+      "playUrl": "https://www.gamedev.pl",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "resource-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
+        "sourceStars": 17
+      },
+      "entryType": "RESOURCE"
+    },
+    {
+      "id": "auto-gh-1441935629",
+      "title": "avp86fr-jpg.github.io",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/avp86fr-jpg/avp86fr-jpg.github.io",
+      "playUrl": "https://avp86fr-jpg.github.io",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "launch-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-controls (NOT gameplay-tested)",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1158430198",
+      "title": "k8sgames",
+      "category": "Game discovery / development resource",
+      "sourceUrl": "https://github.com/rohitg00/k8sgames",
+      "playUrl": "https://k8sgames.com",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "resource-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "blocked-or-error",
+        "sourceStars": 1478
+      },
+      "entryType": "RESOURCE"
+    },
+    {
+      "id": "auto-gh-1358416584",
+      "title": "yougame-plugin",
+      "category": "Game discovery / development resource",
+      "sourceUrl": "https://github.com/yougame-co/yougame-plugin",
+      "playUrl": "https://yougame.co/plugin",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "resource-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-controls (NOT gameplay-tested)",
+        "sourceStars": 0
+      },
+      "entryType": "RESOURCE"
+    },
+    {
+      "id": "auto-gh-1240941468",
+      "title": "Memory-Card-Game",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/itzsumu/Memory-Card-Game",
+      "playUrl": "https://memory-card-game-amber-eight.vercel.app",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "launch-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1124527036",
+      "title": "loading-website",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/Corvus-gent/loading-website",
+      "playUrl": "https://loading-website.vercel.app",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "launch-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "rendered-with-canvas-or-frame (NOT gameplay-tested)",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1259958562",
+      "title": "games-hub",
+      "category": "Game discovery / development resource",
+      "sourceUrl": "https://github.com/coltjbennett/games-hub",
+      "playUrl": "https://coltjbennett.github.io/games-hub",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "resource-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 3
+      },
+      "entryType": "RESOURCE"
+    },
+    {
+      "id": "auto-gh-1110128989",
+      "title": "Aurora-OS.js",
+      "category": "Game discovery / development resource",
+      "sourceUrl": "https://github.com/mental-os/Aurora-OS.js",
+      "playUrl": "https://mental-os.github.io/Aurora-OS.js",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "resource-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 755
+      },
+      "entryType": "RESOURCE"
+    },
+    {
+      "id": "auto-gh-1083494734",
+      "title": "jangyoon-s-game",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/shinjaehyun20/jangyoon-s-game",
+      "playUrl": "https://shinjaehyun20.github.io/jangyoon-s-game",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "needs-inspection",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 1
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-157332971",
+      "title": "bullshit-wtf",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/radotzki/bullshit-wtf",
+      "playUrl": "https://bullshit.wtf",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "needs-inspection",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 1
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1449472590",
+      "title": "StarCraft",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/Aura417786/StarCraft",
+      "playUrl": "https://star-breaker-aura-261107.huafeihua560.chatgpt.site/about.html",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "needs-inspection",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1055028409",
+      "title": "3-en-raya",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/alberto2005-coder/3-en-raya",
+      "playUrl": "https://albertoortiz.is-a.dev/3-en-raya",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "needs-inspection",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 2
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1389937382",
+      "title": "GH-Arcade",
+      "category": "Game discovery / development resource",
+      "sourceUrl": "https://github.com/TMHSDigital/GH-Arcade",
+      "playUrl": "https://tmhsdigital.github.io/GH-Arcade",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "resource-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 3
+      },
+      "entryType": "RESOURCE"
+    },
+    {
+      "id": "auto-gh-1433120867",
+      "title": "almanac",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/almanac-bg/almanac",
+      "playUrl": "https://almanac.bg",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "needs-inspection",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1461177467",
+      "title": "court-shift",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/BridgemanEntertainmentProductions/court-shift",
+      "playUrl": "https://bridgemanentertainment.itch.io/court-shift",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "needs-inspection",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1375592391",
+      "title": "draw-guess",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/PJH-Eric/draw-guess",
+      "playUrl": "https://pjh-eric.github.io/draw-guess",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "needs-inspection",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1260306273",
+      "title": "deadrot.com",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/shipshitgames/deadrot.com",
+      "playUrl": "https://deadrot.com",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "needs-inspection",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1454054094",
+      "title": "the-lost-storm",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/marginsystems/the-lost-storm",
+      "playUrl": "https://theloststorm.com",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "needs-inspection",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1440918373",
+      "title": "moonfall",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/peter-routamaa/moonfall",
+      "playUrl": "https://peter-routamaa.github.io/moonfall",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "needs-inspection",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1411132742",
+      "title": "GhostGames",
+      "category": "Game discovery / development resource",
+      "sourceUrl": "https://github.com/GhostFaceModz/GhostGames",
+      "playUrl": "https://ghostgames.app",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "resource-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 2
+      },
+      "entryType": "RESOURCE"
+    },
+    {
+      "id": "auto-gh-1437096805",
+      "title": "Opencade",
+      "category": "Game discovery / development resource",
+      "sourceUrl": "https://github.com/Davy45270/Opencade",
+      "playUrl": "https://davy45270.github.io/Opencade",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "resource-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 0
+      },
+      "entryType": "RESOURCE"
+    },
+    {
+      "id": "auto-gh-1460902860",
+      "title": "pocket-basketball",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/eddyarriaga00/pocket-basketball",
+      "playUrl": "https://eddyarriaga00.github.io/pocket-basketball",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "needs-inspection",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1110235258",
+      "title": "Musical-Match-Saga",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/hannahro15/Musical-Match-Saga",
+      "playUrl": "https://hannahro15.github.io/Musical-Match-Saga",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "needs-inspection",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1194459977",
+      "title": "myself-tejapriyan",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/TejaPriyan/myself-tejapriyan",
+      "playUrl": "https://tejapriyan.github.io/myself-tejapriyan",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "needs-inspection",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 1
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1151925632",
+      "title": "taoyuan",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/setube/taoyuan",
+      "playUrl": "https://taoyuan.wenzi.games",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "needs-inspection",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 606
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1461284053",
+      "title": "polyguess",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/SAMARTHJAISWAL/polyguess",
+      "playUrl": "https://polyguess.vercel.app",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "needs-inspection",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 0
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1412105021",
+      "title": "dungeon-py",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/JellyFish2077/dungeon-py",
+      "playUrl": "https://jellyfish2077.github.io/dungeon-py",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "needs-inspection",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 1
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-1417520295",
+      "title": "prism",
+      "category": "Game discovery / development resource",
+      "sourceUrl": "https://github.com/jfrelat-lab/prism",
+      "playUrl": "https://prism-compiler.pages.dev",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "resource-review",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 3
+      },
+      "entryType": "RESOURCE"
+    },
+    {
+      "id": "auto-gh-1398810590",
+      "title": "Geometry-Dash-webport",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/Ale7208/Geometry-Dash-webport",
+      "playUrl": "https://gd-webport.pages.dev",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "needs-inspection",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 23
+      },
+      "entryType": "GAME_CANDIDATE"
+    },
+    {
+      "id": "auto-gh-342961897",
+      "title": "prismarine-web-client",
+      "category": "Browser game candidate",
+      "sourceUrl": "https://github.com/PrismarineJS/prismarine-web-client",
+      "playUrl": "https://prismarinejs.github.io/prismarine-web-client",
+      "sourceRequirements": "Automatically discovered public GitHub project. Direct game launch, controls, accounts, files, embedding rights and licensing not confirmed.",
+      "verificationChecklist": "Confirm this is a GAME rather than a directory/tool; start actual gameplay; test keyboard/touch, device compatibility, redirects, files/accounts, safe content and permission to embed or link.",
+      "status": "unverified",
+      "gameplayTested": false,
+      "readyForPublicCatalogue": false,
+      "reviewPriority": "needs-inspection",
+      "discoverySource": "github-topic-search",
+      "automationEvidence": {
+        "http": "http-200",
+        "browser": "not-tested",
+        "sourceStars": 561
+      },
+      "entryType": "GAME_CANDIDATE"
     }
   ]
 }
