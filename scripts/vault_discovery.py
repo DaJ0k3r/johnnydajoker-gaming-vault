@@ -218,7 +218,7 @@ def render():
     lines += ["", "## Existing game-link spot check", "",
               "These checks only tell us whether automated requests succeeded; they cannot prove games launch.", ""]
     for g in audit:
-        lines.append(f"- **{short(g['title'], 60)}** — {g['http']} ({g['catalogueStatus']})")
+        lines.append(f"- **{short(g['title'], 60)}** — HTTP: {g['http']}; browser: {g.get('browser', 'not-sampled')} ({g['catalogueStatus']})")
     lines += ["", "**After ticking:** GitHub prepares a review PR with newly approved entries in "
               "`data/discovery/candidates.json`; they remain unverified until manually tested.",
               "Issues edits by the repository owner trigger this step. No automatic public publishing.",
