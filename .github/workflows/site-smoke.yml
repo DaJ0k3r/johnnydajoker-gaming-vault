@@ -14,7 +14,7 @@ permissions:
 jobs:
   source-smoke:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -31,6 +31,10 @@ jobs:
         run: |
           python scripts/build_first_paint.py
           git diff --exit-code -- index.html
+      - name: Install real-browser QA
+        run: python -m pip install 'playwright==1.55.0'
+      - name: Desktop and mobile browser smoke tests
+        run: python scripts/test_browser_e2e.py
       - name: Package isolated preview
         run: |
           mkdir -p preview
