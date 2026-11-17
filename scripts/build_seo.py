@@ -70,13 +70,19 @@ def page_for(name, games, genres):
         label = " · ".join(requirements)
         note = game.get("description") or "Community browser project"
         link = game["url"]
-        if not link.startswith("https://"):
+        original = ("madhouse-original" in tags and link.startswith("games/")
+                    and (ROOT / link / "index.html").is_file())
+        if original:
+            link = BASE + "/" + link.rstrip("/") + "/"
+        elif not link.startswith("https://"):
             continue
+        badge = "MADHOUSE ORIGINAL · PLAY HERE" if original else "DESTINATION CHECKED · GAME"
+        action = "Play in MADHOUSE ↗" if original else "Visit game ↗"
         cards.append('<article class="card">'
-                     '<span class="label">DESTINATION CHECKED · GAME</span>'
+                     f'<span class="label">{badge}</span>'
                      f'<h2>{escape(game["title"])}</h2>'
                      f'<p>{escape(note)}</p><small>{escape(label)}</small>'
-                     f'<a href="{escape(link, quote=True)}" target="_blank" rel="noopener noreferrer">Visit game ↗</a>'
+                     f'<a href="{escape(link, quote=True)}" target="_blank" rel="noopener noreferrer">{action}</a>'
                      '</article>')
     links = " · ".join(f'<a href="../{slug(other)}/">{escape(other)}</a>' for other in genres if other != name)
     page = f"""<!doctype html>
@@ -92,7 +98,7 @@ def page_for(name, games, genres):
 <body><header><nav><strong>JOHNNY DA JOKER · MADHOUSE</strong><a href="../../">The Vault</a><a href="../../about.html">About</a><a href="../../contact.html">Suggest a game</a></nav></header>
 <main><p class="label">THE BROWSER GAMING VAULT · {escape(name.upper())}</p>
 <h1>{escape(title)}</h1><p class="lead">{escape(intro)}</p>
-<p class="notice"><strong>{len(cards)} previously checked destinations.</strong> These are independent external websites, not games hosted by MADHOUSE. A successful destination check does not guarantee full gameplay, embedding, or continued availability. Check accounts, file requirements and controls before playing.</p>
+<p class="notice"><strong>{len(cards)} previously checked destinations.</strong> Most games link to independent websites; MADHOUSE Originals are hosted here. A successful destination check does not guarantee full gameplay, embedding, or continued availability. Check accounts, file requirements and controls before playing.</p>
 <div class="grid">{''.join(cards)}</div>
 <h2>Explore more game categories</h2><p>{links}</p>
 <footer><a href="../../">Return to MADHOUSE</a><a href="../../privacy.html">Privacy</a><a href="../../takedown.html">Rights &amp; takedown</a><a href="../../contact.html">Contact</a></footer></main></body></html>
@@ -121,9 +127,16 @@ def build():
         out.mkdir(parents=True, exist_ok=True)
         (out / "index.html").write_text(page_for(name, groups[name], available), encoding="utf-8")
     old.write_text(json.dumps(available, indent=2) + "\n", encoding="utf-8")
+    originals = sorted({BASE + "/" + game["url"].rstrip("/") + "/"
+                        for game in g
+                        if game.get("type") == "GAME" and game.get("status") == "verified"
+                        and "madhouse-original" in game.get("tags", [])
+                        and str(game.get("url", "")).startswith("games/")
+                        and (ROOT / game["url"] / "index.html").is_file()})
     urls = [BASE + "/", *(BASE + "/" + x for x in
                            ("about.html", "privacy.html", "contact.html", "takedown.html")),
-            *(BASE + "/genres/" + slug(name) + "/" for name in available)]
+            *(BASE + "/genres/" + slug(name) + "/" for name in available),
+            *originals]
     ET.register_namespace("", "http://www.sitemaps.org/schemas/sitemap/0.9")
     xml_root = ET.Element("{http://www.sitemaps.org/schemas/sitemap/0.9}urlset")
     for url in urls:
