@@ -140,11 +140,11 @@ class VaultSmokeTests(unittest.TestCase):
         self.assertTrue(preview.exists())
         self.assertLess(ico.stat().st_size, 80000)
         self.assertLess(preview.stat().st_size, 80000)
-        self.assertIn('href="./favicon.ico"', HTML)
+        self.assertIn('href="./straw-hat-favicon.ico"', HTML)
         for path in ("about.html","privacy.html","contact.html","takedown.html"):
-            self.assertIn('href="./favicon.ico"', (ROOT/path).read_text(encoding="utf-8"))
+            self.assertIn('href="./straw-hat-favicon.ico"', (ROOT/path).read_text(encoding="utf-8"))
         for path in ("games/neon-dodge/index.html","games/nightshift-racer/index.html"):
-            self.assertIn('href="../../favicon.ico"', (ROOT/path).read_text(encoding="utf-8"))
+            self.assertIn('href="../../straw-hat-favicon.ico"', (ROOT/path).read_text(encoding="utf-8"))
         # Preserves original source branding and matching social preview artwork.
         self.assertTrue((ROOT/"JohnnyDaJoker.png").exists())
         self.assertTrue((ROOT/"JohnnyDaJoker_YouTube_Banner_2560x1440.png").exists())
