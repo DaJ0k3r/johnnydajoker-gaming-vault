@@ -77,6 +77,24 @@ class VaultSmokeTests(unittest.TestCase):
         self.assertIn('property="og:image"', HTML)
         self.assertIn('name="twitter:image"', HTML)
 
+    def test_user_supplied_straw_hat_favicon_on_all_public_pages(self):
+        icon = (ROOT / "straw-hat-favicon.ico").read_bytes()
+        self.assertEqual(icon[:4], bytes((0, 0, 1, 0)), "Not a valid ICO header")
+        self.assertLess(len(icon), 10000, "Favicon must remain small")
+        self.assertEqual(icon, (ROOT / "favicon.ico").read_bytes(),
+                         "Default browser fallback must use the straw hat too")
+        pages = ("index.html", "games/neon-dodge/index.html",
+                 "games/nightshift-racer/index.html")
+        pages += tuple(f"genres/{name}/index.html" for name in
+                       ("arcade", "party", "puzzle", "racing", "rpg",
+                        "sandbox", "shooter", "strategy"))
+        for page in pages:
+            text = (ROOT / page).read_text(encoding="utf-8")
+            self.assertIn('rel="icon" type="image/x-icon"', text, page)
+            self.assertIn("straw-hat-favicon.ico", text, page)
+        self.assertIn("straw-hat-favicon.ico",
+                      (ROOT / "scripts/build_seo.py").read_text(encoding="utf-8"))
+
     def test_responsive_art_keeps_source_branding_and_reduces_image_weight(self):
         # Original full-resolution art is retained for social previews and
         # downloads; CSS uses small WebP variants on desktop and mobile.
@@ -122,11 +140,11 @@ class VaultSmokeTests(unittest.TestCase):
         self.assertTrue(preview.exists())
         self.assertLess(ico.stat().st_size, 80000)
         self.assertLess(preview.stat().st_size, 80000)
-        self.assertIn('href="./favicon.ico"', HTML)
+        self.assertIn('href="./straw-hat-favicon.ico"', HTML)
         for path in ("about.html","privacy.html","contact.html","takedown.html"):
-            self.assertIn('href="./favicon.ico"', (ROOT/path).read_text(encoding="utf-8"))
+            self.assertIn('href="./straw-hat-favicon.ico"', (ROOT/path).read_text(encoding="utf-8"))
         for path in ("games/neon-dodge/index.html","games/nightshift-racer/index.html"):
-            self.assertIn('href="../../favicon.ico"', (ROOT/path).read_text(encoding="utf-8"))
+            self.assertIn('href="../../straw-hat-favicon.ico"', (ROOT/path).read_text(encoding="utf-8"))
         # Preserves original source branding and matching social preview artwork.
         self.assertTrue((ROOT/"JohnnyDaJoker.png").exists())
         self.assertTrue((ROOT/"JohnnyDaJoker_YouTube_Banner_2560x1440.png").exists())

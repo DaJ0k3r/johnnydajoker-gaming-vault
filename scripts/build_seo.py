@@ -93,7 +93,7 @@ def page_for(name, games, genres):
 <link rel="canonical" href="{url}">
 <meta property="og:type" content="website"><meta property="og:title" content="{escape(title, quote=True)}">
 <meta property="og:description" content="{escape(intro, quote=True)}"><meta property="og:url" content="{url}">
-<link rel="icon" type="image/x-icon" href="../../favicon.ico">
+<link rel="icon" type="image/x-icon" href="../../straw-hat-favicon.ico">
 <style>{CSS}</style></head>
 <body><header><nav><strong>JOHNNY DA JOKER · MADHOUSE</strong><a href="../../">The Vault</a><a href="../../about.html">About</a><a href="../../contact.html">Suggest a game</a></nav></header>
 <main><p class="label">THE BROWSER GAMING VAULT · {escape(name.upper())}</p>
