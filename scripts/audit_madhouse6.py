@@ -5,6 +5,7 @@ Never changes game statuses: HTTP success and a working landing page do not
 prove that a game is playable. Human gameplay tests remain authoritative.
 """
 import json
+import argparse
 import re
 from collections import Counter
 from pathlib import Path
@@ -45,9 +46,12 @@ report = {
     ],
     "safety": "Read-only report. No catalogue badges, live files or deployment changed."
 }
-out = ROOT / "madhouse-6-audit.json"
+parser = argparse.ArgumentParser(description="Read-only catalogue verification audit")
+parser.add_argument("--output", default="madhouse-6-audit.json", help="Report path")
+args = parser.parse_args()
+out = Path(args.output)
 out.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 print(f"Catalogue: {len(games)} | review flags: {len(flags)} | largest assets: {len(assets[:20])}")
 for flag in flags[:30]:
     print(f"REVIEW {flag['id']}: {flag['title']} — {flag['reason']}")
-print("Report: madhouse-6-audit.json")
+print(f"Report: {out}")
