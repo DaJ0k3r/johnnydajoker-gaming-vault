@@ -35,6 +35,17 @@ jobs:
           PY
       - name: Check inline JavaScript syntax
         run: python scripts/check_inline_js.py
+      - name: Generate MADHOUSE 6 verification review report
+        run: |
+          python scripts/audit_madhouse6.py --output /tmp/madhouse-6-audit.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path('/tmp/madhouse-6-audit.json').read_text())
+          assert data['catalogueCount'] == sum(data['statusCounts'].values())
+          assert isinstance(data['verificationReview'], list)
+          print('PASS read-only verification audit')
+          PY
       - name: Check catalogue, saved-data contracts and page links
         run: python -m unittest discover -s scripts -p 'test_site_smoke.py' -v
       - name: Verify generated first paint is up to date
